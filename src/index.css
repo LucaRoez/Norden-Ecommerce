@@ -1,0 +1,139 @@
+
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/inter";
+
+/* TEMA NORDEN */
+
+@theme {
+  /* Identidad principal */
+  --color-primary: #2D3432;
+  --color-primary-hover: #414C47;
+  --color-primary-dark: #202624;
+  --color-primary-light: #59645E;
+  --color-primary-soft: #E8EBE7;
+
+  /* Roble y tonos cálidos */
+  --color-secondary: #A28B73;
+  --color-secondary-dark: #806B55;
+  --color-secondary-light: #C1AD96;
+  --color-secondary-soft: #F0E8DE;
+  --color-secondary-pale: #F7F2EB;
+
+  /* Verde salvia */
+  --color-accent: #758477;
+  --color-accent-dark: #58695B;
+  --color-accent-light: #A1AE9F;
+  --color-accent-soft: #E5EBE3;
+  --color-accent-pale: #F1F4EF;
+
+  /* Fondos */
+  --color-background: #F5F2EC;
+  --color-background-alt: #EDE8DF;
+  --color-background-warm: #EBE3D7;
+  --color-background-cool: #EEF0EB;
+
+  /* Superficies y tarjetas */
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #E5DED3;
+  --color-surface-raised: #FCFAF6;
+  --color-surface-muted: #F0EDE6;
+  --color-surface-dark: #353D38;
+
+  /* Tipografía */
+  --color-text: #2D3432;
+  --color-text-secondary: #6E756F;
+  --color-text-muted: #8C918A;
+  --color-text-subtle: #A5A79F;
+  --color-text-inverse: #FFFFFF;
+  --color-text-warm: #806B55;
+
+  /* Bordes y separadores */
+  --color-border: #D8D2C8;
+  --color-border-strong: #BEB6A9;
+  --color-border-soft: #E8E3DA;
+  --color-border-dark: #515A53;
+
+  /* Botones */
+  --color-button-primary: #2D3432;
+  --color-button-primary-hover: #414C47;
+  --color-button-primary-active: #202624;
+  --color-button-secondary: #E5DED3;
+  --color-button-secondary-hover: #D5C9B9;
+  --color-button-accent: #758477;
+  --color-button-accent-hover: #58695B;
+
+  /* Estados e interacción */
+  --color-focus: #758477;
+  --color-success: #527A60;
+  --color-success-soft: #E5F0E6;
+  --color-warning: #B98543;
+  --color-warning-soft: #F7EDDA;
+  --color-error: #B65B50;
+  --color-error-soft: #F5E5E1;
+  --color-info: #627D8A;
+  --color-info-soft: #E6EEF1;
+
+  /* Elementos decorativos */
+  --color-decorative-sage: #C5CEC1;
+  --color-decorative-sand: #D6C5AD;
+  --color-decorative-clay: #C49B82;
+  --color-decorative-stone: #B7B8AC;
+
+  /* Tipografía */
+  --font-sans: "Inter Variable", sans-serif;
+  --font-heading: "Inter Variable", sans-serif;
+}
+
+
+/* TOKENS DE SHADCN */
+
+@theme inline {
+  --color-foreground: var(--color-text);
+
+  --color-card: var(--color-surface);
+  --color-card-foreground: var(--color-text);
+
+  --color-popover: var(--color-surface);
+  --color-popover-foreground: var(--color-text);
+
+  --color-primary-foreground: var(--color-text-inverse);
+  --color-secondary-foreground: var(--color-text);
+  --color-accent-foreground: var(--color-text);
+
+  --color-muted: var(--color-surface-alt);
+  --color-muted-foreground: var(--color-text-secondary);
+
+  --color-destructive: var(--color-error);
+  --color-input: var(--color-border);
+  --color-ring: var(--color-focus);
+
+  --color-sidebar: var(--color-surface);
+  --color-sidebar-foreground: var(--color-text);
+  --color-sidebar-primary: var(--color-primary);
+  --color-sidebar-primary-foreground: var(--color-text-inverse);
+  --color-sidebar-accent: var(--color-surface-alt);
+  --color-sidebar-accent-foreground: var(--color-text);
+  --color-sidebar-border: var(--color-border);
+  --color-sidebar-ring: var(--color-focus);
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.625rem;
+  --radius-xl: 0.875rem;
+  --radius-2xl: 1.125rem;
+}
+
+
+/* ESTILOS BASE */
+
+@layer base {
+  html {
+    @apply font-sans;
+  }
+
+  body {
+    @apply bg-background text-text;
+  }
+}
