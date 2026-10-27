@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "Decoración",
+        "description": "Detalles únicos que aportan calidez y personalidad a cada espacio.",
+        "src": "assets/categories/category-decoration.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Iluminación",
+        "description": "Diseños que combinan luz, funcionalidad y estilo",
+        "src": "assets/categories/category-lighting.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Organización",
+        "description": "Soluciones prácticas para mantener cada espacio en armonía.",
+        "src": "assets/categories/category-storage.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Textiles",
+        "description": "Texturas suaves y tonos naturales para un hogar acogedor.",
+        "src": "assets/categories/category-textile.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Cocina y mesa",
+        "description": "Piezas funcionales que elevan cada momento cotidiano.",
+        "src": "assets/categories/category-kitchen.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Escritorio",
+        "description": "Tecnología y accesorios que transforman tu espacio de trabajo.",
+        "src": "assets/categories/category-desk.jpg"
+    }
+]

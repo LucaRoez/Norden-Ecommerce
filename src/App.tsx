@@ -1,14 +1,13 @@
-import { useState } from 'react';
 import './App.css';
-import Hero from './pages/Hero.jsx';
-import NavBar from './components/layout/NavBar.jsx';
+import NavBar from './components/layout/NavBar.js';
+import Home from './pages/Home.js';
 
 function App() {
   return (
     <>
       <NavBar />
       <main id="main-body" className="bg-surface">
-        <Hero />
+        <Home />
       </main>
       <footer></footer>
     </>

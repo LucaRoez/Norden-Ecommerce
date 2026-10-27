@@ -1,12 +1,10 @@
-
 import { useState } from "react";
 import {
   Menu,
   Search,
   UserRound,
   ShoppingCart,
-  Zap,
-  X,
+  Zap
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -19,20 +17,13 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-const categories = [
-  "Todos los productos",
-  "Decoración",
-  "Iluminación",
-  "Organización",
-  "Textiles",
-  "Cocina y mesa",
-  "Escritorio"
-];
+import categories from "@/data/categories-navbar.json";
+const ALL_CATEGORIES = ["Todos los productos", ...categories];
 
 export default function Navbar() {
     const [search, setSearch] = useState("");
 
-    function handleSearch(event) {
+    function handleSearch(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
         const query = search.trim();
@@ -49,7 +40,7 @@ export default function Navbar() {
                     {/* Menú Mobile */}
                     <div className="lg:hidden">
                         <Sheet>
-                            <SheetTrigger asChild>
+                            <SheetTrigger>
                                 <Button
                                     size="icon"
                                     className="shrink-0 text-secondary hover:bg-surface/20 hover:text-primary lg:hidden size-10"
@@ -188,8 +179,8 @@ export default function Navbar() {
                 aria-label="Categorías de productos"
                 className="hidden border-b border-primary/10 lg:block"
             >
-                <div className="mx-auto flex max-w-7xl items-center justify-evenly gap-8 overflow-x-auto px-6">
-                    {categories.map((category) => (
+                <div className="mx-auto flex max-w-7xl items-center justify-evenly gap-8 overflow-x-auto px-6 max-[1212px]:px-14">
+                    {ALL_CATEGORIES.map((category) => (
                         <a
                             key={category}
                             href="#productos"
