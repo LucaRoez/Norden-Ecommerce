@@ -9,7 +9,7 @@ const TrustBar = () => {
     };
     return (
         <section id="trust-bar" className="
-            bg-background text-text py-2 px-4 text-center flex max-[998px]:grid max-[998px]:grid-cols-2 justify-between lg:justify-evenly
+            bg-background text-text py-6 px-4 text-center flex max-[998px]:grid max-[998px]:grid-cols-2 justify-between lg:justify-evenly
         ">
             {
                 Object.entries(trustBar).map(([title, description]) => (

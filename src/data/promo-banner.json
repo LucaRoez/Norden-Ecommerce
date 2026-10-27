@@ -1,0 +1,51 @@
+[
+  {
+    "title": "Bienvenido a Norden",
+    "subtitle": "Diseño y funcionalidad para tu hogar.",
+    "image": "/src/assets/home/norden-banner.jpg",
+    "buttonText": "Explorar productos",
+    "buttonLink": "/productos"
+  },
+  {
+    "title": "Renová tus espacios",
+    "subtitle": "Detalles que transforman tu hogar.",
+    "image": "/src/assets/home/norden-banner.jpg",
+    "buttonText": "Ver decoración",
+    "buttonLink": "/productos?categoria=decoracion"
+  },
+  {
+    "title": "Iluminá tus ideas",
+    "subtitle": "Encontrá la luz ideal para cada ambiente.",
+    "image": "/src/assets/home/norden-banner.jpg",
+    "buttonText": "Ver iluminación",
+    "buttonLink": "/productos?categoria=iluminacion"
+  },
+  {
+    "title": "Orden que inspira",
+    "subtitle": "Soluciones prácticas para cada rincón.",
+    "image": "/src/assets/home/norden-banner.jpg",
+    "buttonText": "Descubrir",
+    "buttonLink": "/productos?categoria=organizacion"
+  },
+  {
+    "title": "Tu hogar, tu estilo",
+    "subtitle": "Textiles que aportan calidez.",
+    "image": "/src/assets/home/norden-banner.jpg",
+    "buttonText": "Ver textiles",
+    "buttonLink": "/productos?categoria=textiles"
+  },
+  {
+    "title": "Momentos para compartir",
+    "subtitle": "Todo para tu cocina y mesa.",
+    "image": "/src/assets/home/norden-banner.jpg",
+    "buttonText": "Explorar colección",
+    "buttonLink": "/productos?categoria=cocina"
+  },
+  {
+    "title": "Un espacio para crear",
+    "subtitle": "Equipá tu escritorio con estilo.",
+    "image": "/src/assets/home/norden-banner.jpg",
+    "buttonText": "Ver escritorio",
+    "buttonLink": "/productos?categoria=escritorio"
+  }
+]

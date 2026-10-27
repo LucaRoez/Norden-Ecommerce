@@ -1,4 +1,4 @@
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 
 const Hero = () => {
 	return (
@@ -16,7 +16,7 @@ const Hero = () => {
 				<Button className="absolute left-5 min-[656px]:left-0 mt-8 p-6 text-base lg:text-lg rounded-sm bg-surface text-primary
 					hover:bg-primary hover:text-surface active:ring-2 active:ring-focus/90 active:ring-offset-0
 				">
-					Explorar productos
+					Ver Colección
 				</Button>
 			</div>
 		</section>
