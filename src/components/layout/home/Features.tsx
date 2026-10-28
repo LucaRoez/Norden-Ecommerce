@@ -6,9 +6,11 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "../../ui/carousel";
-import { Button } from "../../ui/button";
 import Autoplay from "embla-carousel-autoplay";
+import { Button } from "../../ui/button";
+import Rating from "../Rating";
 import { getAsset } from "@/utils/assets";
+import { formatToCurrency } from "@/utils/formats";
 
 import type { Product } from "@/interfaces/product.ts";
 import { getFeaturedProducts } from "@/services/productServices.ts";
@@ -66,36 +68,33 @@ const FeaturedProducts = () => {
                                     border border-border rounded-sm pl-0 bg-surface-raised
                                 "
                             >
-                            <div className="group block flex flex-col justify-between items-end h-full">
-                                <a href="#productos" className="
-                                    w-full overflow-hidden rounded-sm
-                                    h-70 min-[490px]:h-100 min-[640px]:h-60 min-[840px]:h-80 min-[1024px]:h-40 min-[1320px]:h-50
-                                ">
-                                    <img
-                                        src={getAsset(product.image)}
-                                        alt={product.name}
-                                        className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                    />
-                                </a>
+                                <div className="group block flex flex-col justify-between items-center h-full">
+                                    <a href="#productos" className="
+                                        w-full overflow-hidden rounded-sm
+                                        h-70 min-[490px]:h-100 min-[640px]:h-60 min-[840px]:h-80 min-[1024px]:h-40 min-[1320px]:h-50
+                                    ">
+                                        <img
+                                            src={getAsset(product.image)}
+                                            alt={product.name}
+                                            className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                        />
+                                    </a>
 
-                                <div className="pb-3 px-3 flex flex-col justify-between items-center">
-                                    <h3 className="mt-3 font-semibold text-text text-lg min-md:text-xl min-lg:text-2xl">
-                                        {product.name}
-                                    </h3>
-                                    <p className="mt-1 text-text-text-secondary text-sm min-md:text-base min-lg:text-lg">
-                                        {product.description}
-                                    </p>
-                                    <p className="mt-1 text-text-text-secondary text-sm min-md:text-base min-lg:text-lg">
-                                        {product.price}
-                                    </p>
-                                    <p className="mt-1 text-text-text-secondary text-sm min-md:text-base min-lg:text-lg">
-                                        {product.rate}
-                                    </p>
+                                    <div className="pb-3 px-3 flex flex-col justify-between items-center">
+                                        <h3 className="mt-3 font-semibold text-text text-lg min-md:text-xl min-lg:text-2xl">
+                                            {product.name}
+                                        </h3>
+                                        <p className="mt-1 text-text-text-secondary text-sm min-md:text-base min-lg:text-lg">
+                                            {formatToCurrency(product.price, 'PYG', 'es-PY')}
+                                        </p>
+                                    </div>
+                                    <div className="w-full flex flex-col items-end mr-2 mb-2">
+                                        <Rating value={product.rate} />
+                                        <Button className="rounded-sm px-3 py-2 mt-2 text-sm min-lg:text-base bg-primary text-white hover:bg-primary-dark transition-colors duration-300 active:ring-1 active:ring-focus/50 active:ring-offset-0">
+                                            Agregar al carrito - {formatToCurrency(product.price, 'PYG', 'es-PY')}
+                                        </Button>
+                                    </div>
                                 </div>
-                                <Button className="rounded-sm mr-2 mb-2 px-3 py-2 text-sm min-lg:text-base bg-primary text-white hover:bg-primary-dark transition-colors duration-300">
-                                    Agregar al carrito - ${product.price.toFixed(2)}
-                                </Button>
-                            </div>
                             </CarouselItem>
                         ))
                     }
