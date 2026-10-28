@@ -33,12 +33,12 @@ const Categories = () => {
                                 key={category.id}
                                 className="
                                     basis-[calc(100%-.2rem)] sm:basis-[calc((100%-1.2rem)/2)] lg:basis-[calc((100%-3.1rem)/4)]
-                                    border border-border rounded-xl pl-0
+                                    border border-border rounded-sm pl-0 bg-surface-raised
                                 "
                             >
                             <a href="#productos" className="group block flex justify-center items-center flex-col">
                                 <div className="
-                                    w-full overflow-hidden rounded-xl bg-surface-alt
+                                    w-full overflow-hidden rounded-sm
                                     h-70 min-[490px]:h-100 min-[640px]:h-60 min-[840px]:h-80 min-[1024px]:h-40 min-[1320px]:h-50
                                 ">
                                     <img
