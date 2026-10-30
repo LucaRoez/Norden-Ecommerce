@@ -17,8 +17,9 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-import categories from "@/data/categories-navbar.json";
-const ALL_CATEGORIES = ["Todos los productos", ...categories];
+import { Link } from "react-router";
+import { getCategories } from "@/services/categoryServices";
+const categories = getCategories();
 
 export default function Navbar() {
     const [search, setSearch] = useState("");
@@ -62,13 +63,13 @@ export default function Navbar() {
 
                                 <nav className="mt-6 flex flex-col">
                                     {categories.map((category) => (
-                                        <a
-                                            key={category}
-                                            href="#productos"
+                                        <Link
+                                            key={category.id}
+                                            to={`/productos?categoria=${category.slug}`}
                                             className="border-b border-surface/10 px-2 py-4 text-sm transition-colors hover:text-secondary"
                                         >
-                                            {category}
-                                        </a>
+                                            {category.name}
+                                        </Link>
                                     ))}
 
                                     <a
@@ -180,14 +181,14 @@ export default function Navbar() {
                 className="hidden border-b border-primary/10 lg:block"
             >
                 <div className="mx-auto flex max-w-7xl items-center justify-evenly gap-8 overflow-x-auto px-6 max-[1212px]:px-14">
-                    {ALL_CATEGORIES.map((category) => (
-                        <a
-                            key={category}
-                            href="#productos"
-                            className="py-4 text-sm transition-colors hover:text-secondary"
+                    {categories.map((category) => (
+                        <Link
+                            key={category.id}
+                            to={`/productos?categoria=${category.slug}`}
+                            className="border-b border-surface/10 px-2 py-4 text-sm transition-colors hover:text-secondary"
                         >
-                            {category}
-                        </a>
+                            {category.name}
+                        </Link>
                     ))}
                 </div>
             </nav>

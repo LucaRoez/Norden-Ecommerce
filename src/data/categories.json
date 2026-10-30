@@ -1,38 +1,58 @@
 [
     {
+        "id": 0,
+        "name": "Todos los productos",
+        "slug": "todas-las-categorias",
+        "description": "Explorá nuestra colección de diseño, tecnología y accesorios para el hogar. Piezas funcionales y cuidadosamente seleccionadas para cada espacio de tu vida.",
+        "src": "assets/categories/category-all.jpg",
+        "bannerImg": "assets/categories/banners/category-all.jpg"
+    },
+    {
         "id": 1,
         "name": "Decoración",
+        "slug": "decoracion",
         "description": "Detalles únicos que aportan calidez y personalidad a cada espacio.",
-        "src": "assets/categories/category-decoration.jpg"
+        "src": "assets/categories/category-decoration.jpg",
+        "bannerImg": "assets/categories/banners/category-decoration.jpg"
     },
     {
         "id": 2,
         "name": "Iluminación",
+        "slug": "iluminacion",
         "description": "Diseños que combinan luz, funcionalidad y estilo",
-        "src": "assets/categories/category-lighting.jpg"
+        "src": "assets/categories/category-lighting.jpg",
+        "bannerImg": "assets/categories/banners/category-lighting.jpg"
     },
     {
         "id": 3,
         "name": "Organización",
+        "slug": "organizacion",
         "description": "Soluciones prácticas para mantener cada espacio en armonía.",
-        "src": "assets/categories/category-storage.jpg"
+        "src": "assets/categories/category-storage.jpg",
+        "bannerImg": "assets/categories/banners/category-storage.jpg"
     },
     {
         "id": 4,
         "name": "Textiles",
+        "slug": "textiles",
         "description": "Texturas suaves y tonos naturales para un hogar acogedor.",
-        "src": "assets/categories/category-textile.jpg"
+        "src": "assets/categories/category-textile.jpg",
+        "bannerImg": "assets/categories/banners/category-textile.jpg"
     },
     {
         "id": 5,
         "name": "Cocina y mesa",
+        "slug": "cocina-y-mesa",
         "description": "Piezas funcionales que elevan cada momento cotidiano.",
-        "src": "assets/categories/category-kitchen.jpg"
+        "src": "assets/categories/category-kitchen.jpg",
+        "bannerImg": "assets/categories/banners/category-kitchen.jpg"
     },
     {
         "id": 6,
         "name": "Escritorio",
+        "slug": "escritorio",
         "description": "Tecnología y accesorios que transforman tu espacio de trabajo.",
-        "src": "assets/categories/category-desk.jpg"
+        "src": "assets/categories/category-desk.jpg",
+        "bannerImg": "assets/categories/banners/category-desk.jpg"
     }
 ]

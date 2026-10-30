@@ -8,7 +8,10 @@ import {
 } from "../../ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { getAsset } from "@/utils/assets";
-import categories from "@/data/categories.json";
+
+import { Link } from "react-router";
+import { getCategories } from "@/services/categoryServices";
+const categories = getCategories();
 
 const Categories = () => {
     return (
@@ -36,27 +39,30 @@ const Categories = () => {
                                     border border-border rounded-sm pl-0 bg-surface-raised
                                 "
                             >
-                            <a href="#productos" className="group block flex justify-center items-center flex-col">
-                                <div className="
-                                    w-full overflow-hidden rounded-sm
-                                    h-70 min-[490px]:h-100 min-[640px]:h-60 min-[840px]:h-80 min-[1024px]:h-40 min-[1320px]:h-50
-                                ">
-                                    <img
-                                        src={getAsset(category.src)}
-                                        alt={category.name}
-                                        className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                    />
-                                </div>
+                                <Link
+                                    to={`/productos?categoria=${category.slug}`}
+                                    className="group block flex justify-center items-center flex-col"
+                                >
+                                    <div className="
+                                        w-full overflow-hidden rounded-sm
+                                        h-70 min-[490px]:h-100 min-[640px]:h-60 min-[840px]:h-80 min-[1024px]:h-40 min-[1320px]:h-50
+                                    ">
+                                        <img
+                                            src={getAsset(category.src)}
+                                            alt={category.name}
+                                            className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                        />
+                                    </div>
 
-                                <div className="pb-2 px-2">
-                                    <h3 className="mt-3 font-semibold text-text text-lg min-md:text-xl min-lg:text-2xl">
-                                        {category.name}
-                                    </h3>
-                                    <p className="mt-1 text-text-text-secondary text-sm min-md:text-base min-lg:text-lg">
-                                        {category.description}
-                                    </p>
-                                </div>
-                            </a>
+                                    <div className="pb-2 px-2">
+                                        <h3 className="mt-3 font-semibold text-text text-lg min-md:text-xl min-lg:text-2xl">
+                                            {category.name}
+                                        </h3>
+                                        <p className="mt-1 text-text-text-secondary text-sm min-md:text-base min-lg:text-lg">
+                                            {category.description}
+                                        </p>
+                                    </div>
+                                </Link>
                             </CarouselItem>
                         ))
                     }

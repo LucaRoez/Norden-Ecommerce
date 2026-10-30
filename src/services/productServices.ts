@@ -11,6 +11,17 @@ export const getProducts = (): Product[] => {
   return products;
 };
 
+// Productos por Categoría
+export const getProductsByCategory = (
+  categoryId: number
+): Product[] => {
+  return getProducts().filter(
+    (product) =>
+      product.active &&
+      product.categoryId === categoryId
+  );
+};
+
 // Productos Destacados por ID
 export const getFeaturedIds = (): string[] => {
   return featuredIds;
