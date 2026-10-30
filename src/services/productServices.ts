@@ -15,6 +15,8 @@ export const getProducts = (): Product[] => {
 export const getProductsByCategory = (
   categoryId: number
 ): Product[] => {
+  if (categoryId === 0) return getProducts();
+  
   return getProducts().filter(
     (product) =>
       product.active &&

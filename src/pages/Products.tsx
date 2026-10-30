@@ -18,7 +18,7 @@ const Products = () => {
     const products = getProductsByCategory(category.id);
   
     return (
-        <div>
+        <div className="bg-background">
             <Hero category={category} />
             <ProductGrid products={products} />
         </div>

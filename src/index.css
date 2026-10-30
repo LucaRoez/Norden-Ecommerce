@@ -7,6 +7,8 @@
 /* TEMA NORDEN */
 
 @theme {
+  --breakpoint-xs: 30rem;
+  
   /* Identidad principal */
   --color-primary: #2D3432;
   --color-primary-hover: #414C47;
