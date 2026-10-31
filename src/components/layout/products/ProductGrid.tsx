@@ -20,7 +20,7 @@ interface ProductGridProps {
 const ProductGrid = ({ products }: ProductGridProps) => {
     return (
         <section id="product-grid" className="mx-5 my-5">
-            <div className="grid grid-cols-1 xs:grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+            <div className="grid gap-4 grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {
                     products.map((product) => {
                         const imageUrl = getAsset(product.image);
@@ -37,8 +37,8 @@ const ProductGrid = ({ products }: ProductGridProps) => {
                                     <CardDescription>{product.category}</CardDescription>
                                 </CardHeader>
 
-                                <CardContent>
-                                    <p>
+                                <CardContent className="">
+                                    <p className="truncate">
                                         {product.description}
                                     </p>
                                     <div className="my-4 flex justify-between">

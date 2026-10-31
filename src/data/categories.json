@@ -1,7 +1,7 @@
 [
     {
         "id": 0,
-        "name": "Todos los productos",
+        "name": "Todas las categorías",
         "slug": "todas-las-categorias",
         "description": "Explorá nuestra colección de diseño, tecnología y accesorios para el hogar. Piezas funcionales y cuidadosamente seleccionadas para cada espacio de tu vida.",
         "src": "assets/categories/category-all.jpg",
