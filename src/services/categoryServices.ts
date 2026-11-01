@@ -7,3 +7,5 @@ const categories: Category[] = categoriesData;
 export const getCategories = (): Category[] => categories;
 export const getCategoryBySlug = (slug: string) =>
   categories.find((category) => category.slug === slug);
+export const getCategoryByID = (id: number) =>
+  categories.find((category) => category.id === id);

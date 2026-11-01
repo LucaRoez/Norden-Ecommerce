@@ -8,7 +8,9 @@ import {
 } from "../../ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { Button } from "../../ui/button";
+import { Link } from "react-router";
 import Rating from "../Rating";
+
 import { getAsset } from "@/utils/assets";
 import { formatToCurrency } from "@/utils/formats";
 
@@ -45,7 +47,7 @@ const FeaturedProducts = () => {
 
     return (
         <section id="features" className="bg-light py-12">
-            <h2 className="w-full pl-5 flex flex-start font-bold text-text text-2xl min-[998px]:text-3xl my-4">Categorias destacadas</h2>
+            <h2 className="w-full pl-5 flex flex-start font-bold text-text text-2xl min-[998px]:text-3xl my-4">Productos destacadas</h2>
             <div className="grid grid-cols-1 gap-4 mt-4">
                 <Carousel
                     opts={{ align: "start", loop: true }}
@@ -61,41 +63,48 @@ const FeaturedProducts = () => {
                     <CarouselContent className="h-full flex justify-between gap-4 ml-[.1rem]">
                     {
                         featured.map((product) => (
-                            <CarouselItem
-                                key={product.id}
-                                className="
-                                    basis-[calc(100%-.2rem)] sm:basis-[calc((100%-1.2rem)/2)] lg:basis-[calc((100%-3.1rem)/4)]
-                                    border border-border rounded-sm pl-0 bg-surface-raised
-                                "
-                            >
-                                <div className="group block flex flex-col justify-between items-center h-full">
-                                    <a href="#productos" className="
-                                        w-full overflow-hidden rounded-sm
-                                        h-70 min-[490px]:h-100 min-[640px]:h-60 min-[840px]:h-80 min-[1024px]:h-40 min-[1320px]:h-50
-                                    ">
-                                        <img
-                                            src={getAsset(product.image)}
-                                            alt={product.name}
-                                            className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                        />
-                                    </a>
+                                <CarouselItem
+                                    key={product.id}
+                                    className="
+                                        basis-[calc(100%-.2rem)] sm:basis-[calc((100%-1.2rem)/2)] lg:basis-[calc((100%-3.1rem)/4)]
+                                        border border-border rounded-sm pl-0 bg-surface-raised
+                                    "
+                                >
+                            <Link to={`/productos/${product.id}`} className="block w-full h-full">
+                                    <div className="group block flex flex-col justify-between items-center h-full">
+                                        <div className="
+                                            w-full overflow-hidden rounded-sm
+                                            h-70 min-[490px]:h-100 min-[640px]:h-60 min-[840px]:h-80 min-[1024px]:h-40 min-[1320px]:h-50
+                                        ">
+                                            <img
+                                                src={getAsset(product.images[0])}
+                                                alt={product.name}
+                                                className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                            />
+                                        </div>
 
-                                    <div className="pb-3 px-3 flex flex-col justify-between items-center">
-                                        <h3 className="mt-3 font-semibold text-text text-lg min-md:text-xl min-lg:text-2xl">
-                                            {product.name}
-                                        </h3>
-                                        <p className="mt-1 text-text-text-secondary text-sm min-md:text-base min-lg:text-lg">
-                                            {formatToCurrency(product.price, 'PYG', 'es-PY')}
-                                        </p>
+                                        <div className="px-3 flex flex-col justify-between items-center">
+                                            <h3 className="mt-3 font-semibold text-text text-lg min-md:text-xl min-lg:text-2xl">
+                                                {product.name}
+                                            </h3>
+                                            <div className="mt-1">
+                                                <p className="mt-1 text-text-text-secondary text-sm min-md:text-base min-lg:text-lg">
+                                                    {formatToCurrency(product.price, 'PYG', 'es-PY')}
+                                                </p>
+                                                <Rating value={product.rate} />
+                                            </div>
+                                        </div>
+                                        <div className="w-full flex flex-col items-end mr-2 mb-2">
+                                            <Button className="
+                                                rounded-sm px-3 py-2 mt-2 text-sm lg:text-base bg-primary text-white hover:bg-primary-dark
+                                                transition-colors duration-300 active:ring-1 active:ring-focus/50 active:ring-offset-0
+                                            ">
+                                                Agregar al carrito
+                                            </Button>
+                                        </div>
                                     </div>
-                                    <div className="w-full flex flex-col items-end mr-2 mb-2">
-                                        <Rating value={product.rate} />
-                                        <Button className="rounded-sm px-3 py-2 mt-2 text-sm min-lg:text-base bg-primary text-white hover:bg-primary-dark transition-colors duration-300 active:ring-1 active:ring-focus/50 active:ring-offset-0">
-                                            Agregar al carrito - {formatToCurrency(product.price, 'PYG', 'es-PY')}
-                                        </Button>
-                                    </div>
-                                </div>
-                            </CarouselItem>
+                            </Link>
+                                </CarouselItem>
                         ))
                     }
                     </CarouselContent>

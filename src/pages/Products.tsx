@@ -96,7 +96,7 @@ const Products = () => {
     };
 
     return (
-        <div className="bg-background">
+        <div className="bg-surface">
             <Hero category={category} />
             <section className="grid grid-cols-1 gap-8 md:grid-cols-[240px_minmax(0,1fr)]">
                 <Aside

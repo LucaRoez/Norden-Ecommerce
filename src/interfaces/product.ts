@@ -1,11 +1,11 @@
 export interface Product {
-  id: number;
+  id: string;
   name: string;
   description: string;
   price: number;
   category: string;
   categoryId: number;
-  image: string;
+  images: string[];
   rate: number;
   active: boolean;
   featuredEligible: boolean;

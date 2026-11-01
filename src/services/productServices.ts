@@ -11,6 +11,19 @@ export const getProducts = (): Product[] => {
   return products;
 };
 
+// Productos por Id
+export const getProductByID = (
+  productId: string | undefined
+): Product | undefined => {
+  if (!productId) return undefined;
+  
+  return getProducts().find(
+    (product) =>
+      product.active &&
+      product.id === productId
+  );
+};
+
 // Productos por Categoría
 export const getProductsByCategory = (
   categoryId: number
