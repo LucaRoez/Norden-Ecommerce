@@ -24,7 +24,7 @@ const ProductGrid = ({ products }: ProductGridProps) => {
             <div className="grid gap-4 grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {
                     products.map((product) => {
-                        const imageUrl = getAsset(product.images[0]);
+                        const imageUrl = getAsset(product.image);
                         return (
                             <article>
                                 <Link to={`/productos/${product.id}`}>
@@ -53,8 +53,8 @@ const ProductGrid = ({ products }: ProductGridProps) => {
 
                                         <CardFooter className="justify-end">
                                             <Button className="
-                                                w-[70%] transition-bg-color duration-300
-                                                hover:bg-button-secondary hover:text-text active:text-surface
+                                                w-[70%] transition-colors duration-400 rounded-sm bg-button-primary text-surface
+                                                hover:bg-button-secondary hover:text-text active:text-surface active:duration-0
                                             ">
                                                 Agregar al carrito
                                             </Button>

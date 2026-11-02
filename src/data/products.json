@@ -1,146 +1,657 @@
+
 [
   {
     "id": "1",
     "name": "Jarrón escultórico Noma",
-    "description": "Jarrón de cerámica mate en tono marfil, con silueta orgánica y acabado artesanal. Ideal para consolas, estanterías y mesas auxiliares.",
+    "description": "Jarrón de cerámica mate con silueta orgánica y acabado artesanal. Una pieza decorativa que aporta textura y personalidad a consolas, estanterías y mesas auxiliares.",
     "price": 185000,
     "category": "Decoración",
     "categoryId": 1,
-    "images": ["assets/products/Jarrón-escultórico-Noma.jpg"],
+    "image": "assets/products/1/master.jpg",
     "rate": 4.8,
     "active": true,
-    "featuredEligible": true
+    "featuredEligible": true,
+    "variants": [
+      {
+        "id": "1-ivory",
+        "color": { "name": "Marfil", "hex": "#E8E2D6" },
+        "images": [
+          "assets/products/1/1-ivory/01-main.jpg",
+          "assets/products/1/1-ivory/02-detail.jpg",
+          "assets/products/1/1-ivory/03-context.jpg"
+        ],
+        "stock": 14
+      },
+      {
+        "id": "1-sand",
+        "color": { "name": "Arena", "hex": "#B9A58C" },
+        "images": [
+          "assets/products/1/1-sand/01-main.jpg",
+          "assets/products/1/1-sand/02-detail.jpg",
+          "assets/products/1/1-sand/03-context.jpg"
+        ],
+        "stock": 9
+      }
+    ],
+    "features": [
+      "Diseño escultórico de inspiración orgánica",
+      "Cerámica con acabado mate",
+      "Superficie de textura sutil",
+      "Ideal para decoración de interiores",
+      "Combina con estilos Japandi y nórdico"
+    ],
+    "specifications": [
+      { "group": "Materiales", "label": "Material", "value": "Cerámica" },
+      { "group": "Materiales", "label": "Acabado", "value": "Mate" },
+      { "group": "Dimensiones", "label": "Altura", "value": "28 cm" },
+      { "group": "Dimensiones", "label": "Diámetro", "value": "14 cm" },
+      { "group": "Diseño", "label": "Estilo", "value": "Orgánico minimalista" },
+      { "group": "Uso", "label": "Ubicación", "value": "Interior" }
+    ],
+    "shipping": {
+      "weight": 1.2,
+      "dimensions": { "width": 20, "height": 34, "depth": 20, "unit": "cm" },
+      "shippingClass": "fragile",
+      "handlingTime": 2
+    }
   },
   {
     "id": "2",
     "name": "Espejo Aura",
-    "description": "Espejo decorativo de forma orgánica con marco delgado en madera natural. Aporta amplitud y luminosidad a cualquier ambiente.",
+    "description": "Espejo decorativo de forma orgánica con marco delgado en madera natural. Aporta amplitud, luminosidad y un acento contemporáneo a cualquier ambiente.",
     "price": 320000,
     "category": "Decoración",
     "categoryId": 1,
-    "images": ["assets/products/Espejo-Aura.jpg"],
+    "image": "assets/products/2/master.jpg",
     "rate": 4.7,
     "active": true,
-    "featuredEligible": true
+    "featuredEligible": true,
+    "variants": [
+      {
+        "id": "2-natural",
+        "color": { "name": "Roble natural", "hex": "#B99A73" },
+        "images": [
+          "assets/products/2/2-natural/01-main.jpg",
+          "assets/products/2/2-natural/02-detail.jpg",
+          "assets/products/2/2-natural/03-context.jpg"
+        ],
+        "stock": 8
+      },
+      {
+        "id": "2-walnut",
+        "color": { "name": "Nogal", "hex": "#654735" },
+        "images": [
+          "assets/products/2/2-walnut/01-main.jpg",
+          "assets/products/2/2-walnut/02-detail.jpg",
+          "assets/products/2/2-walnut/03-context.jpg"
+        ],
+        "stock": 6
+      }
+    ],
+    "features": [
+      "Silueta orgánica asimétrica",
+      "Marco de madera natural",
+      "Diseño decorativo contemporáneo",
+      "Ideal para dormitorios y recibidores",
+      "Aporta sensación de amplitud"
+    ],
+    "specifications": [
+      { "group": "Materiales", "label": "Marco", "value": "Madera" },
+      { "group": "Materiales", "label": "Superficie", "value": "Vidrio espejado" },
+      { "group": "Dimensiones", "label": "Altura", "value": "70 cm" },
+      { "group": "Dimensiones", "label": "Ancho", "value": "45 cm" },
+      { "group": "Diseño", "label": "Forma", "value": "Orgánica" },
+      { "group": "Instalación", "label": "Montaje", "value": "Colgante" }
+    ],
+    "shipping": {
+      "weight": 4.5,
+      "dimensions": { "width": 52, "height": 78, "depth": 10, "unit": "cm" },
+      "shippingClass": "fragile-oversized",
+      "handlingTime": 3
+    }
   },
   {
     "id": "3",
     "name": "Lámpara de mesa Luma",
-    "description": "Lámpara de mesa con pantalla de lino beige y base minimalista. Diseñada para crear una iluminación cálida en dormitorios y salas.",
+    "description": "Lámpara de mesa con pantalla de lino y base minimalista. Diseñada para crear una iluminación cálida y acogedora en dormitorios, salas y espacios de lectura.",
     "price": 275000,
     "category": "Iluminación",
     "categoryId": 2,
-    "images": ["assets/products/Lámpara-de-mesa-Luma.jpg"],
+    "image": "assets/products/3/master.jpg",
     "rate": 4.9,
     "active": true,
-    "featuredEligible": true
+    "featuredEligible": true,
+    "variants": [
+      {
+        "id": "3-ivory",
+        "color": { "name": "Marfil", "hex": "#E8E2D6" },
+        "images": [
+          "assets/products/3/3-ivory/01-main.jpg",
+          "assets/products/3/3-ivory/02-detail.jpg",
+          "assets/products/3/3-ivory/03-context.jpg"
+        ],
+        "stock": 11
+      },
+      {
+        "id": "3-sage",
+        "color": { "name": "Verde salvia", "hex": "#879486" },
+        "images": [
+          "assets/products/3/3-sage/01-main.jpg",
+          "assets/products/3/3-sage/02-detail.jpg",
+          "assets/products/3/3-sage/03-context.jpg"
+        ],
+        "stock": 7
+      }
+    ],
+    "features": [
+      "Pantalla de lino de aspecto natural",
+      "Iluminación ambiental cálida",
+      "Diseño minimalista",
+      "Ideal para mesas auxiliares y dormitorios",
+      "Interruptor de fácil acceso"
+    ],
+    "specifications": [
+      { "group": "Materiales", "label": "Pantalla", "value": "Lino" },
+      { "group": "Materiales", "label": "Base", "value": "Metal" },
+      { "group": "Dimensiones", "label": "Altura", "value": "42 cm" },
+      { "group": "Dimensiones", "label": "Diámetro", "value": "24 cm" },
+      { "group": "Iluminación", "label": "Portalámparas", "value": "E27" },
+      { "group": "Iluminación", "label": "Bombilla", "value": "No incluida" }
+    ],
+    "shipping": {
+      "weight": 1.8,
+      "dimensions": { "width": 28, "height": 48, "depth": 28, "unit": "cm" },
+      "shippingClass": "standard",
+      "handlingTime": 2
+    }
   },
   {
     "id": "4",
     "name": "Lámpara colgante Nord",
-    "description": "Luminaria colgante de diseño contemporáneo con pantalla metálica mate. Una pieza funcional para comedores, barras y cocinas.",
+    "description": "Luminaria colgante de diseño contemporáneo con pantalla metálica mate. Una pieza funcional que aporta carácter a comedores, barras y cocinas.",
     "price": 450000,
     "category": "Iluminación",
     "categoryId": 2,
-    "images": ["assets/products/Lámpara-colgante-Nord.jpg"],
+    "image": "assets/products/4/master.jpg",
     "rate": 4.6,
     "active": true,
-    "featuredEligible": false
+    "featuredEligible": false,
+    "variants": [
+      {
+        "id": "4-black",
+        "color": { "name": "Negro mate", "hex": "#303331" },
+        "images": [
+          "assets/products/4/4-black/01-main.jpg",
+          "assets/products/4/4-black/02-detail.jpg",
+          "assets/products/4/4-black/03-context.jpg"
+        ],
+        "stock": 8
+      },
+      {
+        "id": "4-ivory",
+        "color": { "name": "Marfil", "hex": "#E8E2D6" },
+        "images": [
+          "assets/products/4/4-ivory/01-main.jpg",
+          "assets/products/4/4-ivory/02-detail.jpg",
+          "assets/products/4/4-ivory/03-context.jpg"
+        ],
+        "stock": 5
+      }
+    ],
+    "features": [
+      "Pantalla metálica de diseño minimalista",
+      "Acabado mate",
+      "Iluminación focal para interiores",
+      "Altura de suspensión regulable",
+      "Ideal para comedores y barras"
+    ],
+    "specifications": [
+      { "group": "Materiales", "label": "Material", "value": "Metal" },
+      { "group": "Materiales", "label": "Acabado", "value": "Mate" },
+      { "group": "Dimensiones", "label": "Diámetro", "value": "35 cm" },
+      { "group": "Dimensiones", "label": "Altura de pantalla", "value": "22 cm" },
+      { "group": "Iluminación", "label": "Portalámparas", "value": "E27" },
+      { "group": "Instalación", "label": "Montaje", "value": "Techo" }
+    ],
+    "shipping": {
+      "weight": 2.4,
+      "dimensions": { "width": 40, "height": 30, "depth": 40, "unit": "cm" },
+      "shippingClass": "standard",
+      "handlingTime": 3
+    }
   },
   {
     "id": "5",
     "name": "Organizadores Modu",
-    "description": "Set de tres organizadores de escritorio y estantería en tonos neutros. Perfectos para guardar accesorios y mantener el orden visual.",
+    "description": "Set de tres organizadores modulares en tonos neutros. Una solución versátil para ordenar accesorios, artículos de escritorio y pequeños objetos del hogar.",
     "price": 145000,
     "category": "Organización",
     "categoryId": 3,
-    "images": ["assets/products/Organizadores-Modu.jpg"],
+    "image": "assets/products/5/master.jpg",
     "rate": 4.5,
     "active": true,
-    "featuredEligible": false
+    "featuredEligible": false,
+    "variants": [
+      {
+        "id": "5-oak",
+        "color": { "name": "Roble natural", "hex": "#B99A73" },
+        "images": [
+          "assets/products/5/5-oak/01-main.jpg",
+          "assets/products/5/5-oak/02-detail.jpg",
+          "assets/products/5/5-oak/03-context.jpg"
+        ],
+        "stock": 16
+      },
+      {
+        "id": "5-sand",
+        "color": { "name": "Arena", "hex": "#C5B59F" },
+        "images": [
+          "assets/products/5/5-sand/01-main.jpg",
+          "assets/products/5/5-sand/02-detail.jpg",
+          "assets/products/5/5-sand/03-context.jpg"
+        ],
+        "stock": 12
+      }
+    ],
+    "features": [
+      "Set de tres organizadores",
+      "Diseño modular y combinable",
+      "Acabado minimalista",
+      "Aprovechamiento eficiente del espacio",
+      "Ideal para escritorios y estanterías"
+    ],
+    "specifications": [
+      { "group": "Contenido", "label": "Unidades", "value": "3 organizadores" },
+      { "group": "Materiales", "label": "Material", "value": "Madera y derivados" },
+      { "group": "Dimensiones", "label": "Formato", "value": "Tres tamaños" },
+      { "group": "Diseño", "label": "Sistema", "value": "Modular" },
+      { "group": "Uso", "label": "Ubicación", "value": "Interior" }
+    ],
+    "shipping": {
+      "weight": 1.1,
+      "dimensions": { "width": 32, "height": 14, "depth": 24, "unit": "cm" },
+      "shippingClass": "standard",
+      "handlingTime": 1
+    }
   },
   {
     "id": "6",
     "name": "Cestas Nara",
-    "description": "Set de dos cestas de fibras naturales con asas integradas. Ideales para textiles, revistas y pequeños objetos del hogar.",
+    "description": "Set de dos cestas de fibras naturales con asas integradas. Ideales para guardar textiles, revistas y pequeños objetos manteniendo una estética cálida y ordenada.",
     "price": 210000,
     "category": "Organización",
     "categoryId": 3,
-    "images": ["assets/products/Cestas-Nara.jpg"],
-    "rate": 4.6,
+    "image": "assets/products/6/master.jpg",
+    "rate": 4.7,
     "active": true,
-    "featuredEligible": true
+    "featuredEligible": true,
+    "variants": [
+      {
+        "id": "6-natural",
+        "color": { "name": "Natural", "hex": "#B99A73" },
+        "images": [
+          "assets/products/6/6-natural/01-main.jpg",
+          "assets/products/6/6-natural/02-detail.jpg",
+          "assets/products/6/6-natural/03-context.jpg"
+        ],
+        "stock": 13
+      },
+      {
+        "id": "6-dark",
+        "color": { "name": "Marrón oscuro", "hex": "#70543D" },
+        "images": [
+          "assets/products/6/6-dark/01-main.jpg",
+          "assets/products/6/6-dark/02-detail.jpg",
+          "assets/products/6/6-dark/03-context.jpg"
+        ],
+        "stock": 8
+      }
+    ],
+    "features": [
+      "Set de dos cestas",
+      "Fibras naturales trenzadas",
+      "Asas integradas para facilitar el transporte",
+      "Diseño decorativo y funcional",
+      "Adecuadas para múltiples ambientes"
+    ],
+    "specifications": [
+      { "group": "Contenido", "label": "Unidades", "value": "2 cestas" },
+      { "group": "Materiales", "label": "Material", "value": "Fibras naturales" },
+      { "group": "Dimensiones", "label": "Tamaño", "value": "Dos tamaños diferentes" },
+      { "group": "Diseño", "label": "Asas", "value": "Integradas" },
+      { "group": "Uso", "label": "Ubicación", "value": "Interior" }
+    ],
+    "shipping": {
+      "weight": 1.5,
+      "dimensions": { "width": 42, "height": 35, "depth": 42, "unit": "cm" },
+      "shippingClass": "voluminous",
+      "handlingTime": 2
+    }
   },
   {
     "id": "7",
     "name": "Manta Oslo",
-    "description": "Manta decorativa de tejido suave en tono arena, con textura acanalada y terminaciones discretas. Ideal para sofás y dormitorios.",
+    "description": "Manta decorativa de tejido suave con textura acanalada y terminaciones discretas. Una pieza versátil para sumar calidez a sofás, sillones y dormitorios.",
     "price": 195000,
     "category": "Textiles",
     "categoryId": 4,
-    "images": ["assets/products/Manta-Oslo.jpg"],
+    "image": "assets/products/7/master.jpg",
     "rate": 4.8,
     "active": true,
-    "featuredEligible": true
+    "featuredEligible": true,
+    "variants": [
+      {
+        "id": "7-sand",
+        "color": { "name": "Arena", "hex": "#C5B59F" },
+        "images": [
+          "assets/products/7/7-sand/01-main.jpg",
+          "assets/products/7/7-sand/02-detail.jpg",
+          "assets/products/7/7-sand/03-context.jpg"
+        ],
+        "stock": 15
+      },
+      {
+        "id": "7-sage",
+        "color": { "name": "Verde salvia", "hex": "#879486" },
+        "images": [
+          "assets/products/7/7-sage/01-main.jpg",
+          "assets/products/7/7-sage/02-detail.jpg",
+          "assets/products/7/7-sage/03-context.jpg"
+        ],
+        "stock": 10
+      }
+    ],
+    "features": [
+      "Tejido suave de textura acanalada",
+      "Terminaciones discretas",
+      "Aporta calidez al ambiente",
+      "Fácil de combinar con textiles neutros",
+      "Ideal para sofás y dormitorios"
+    ],
+    "specifications": [
+      { "group": "Materiales", "label": "Composición", "value": "Tejido sintético suave" },
+      { "group": "Dimensiones", "label": "Largo", "value": "180 cm" },
+      { "group": "Dimensiones", "label": "Ancho", "value": "130 cm" },
+      { "group": "Diseño", "label": "Textura", "value": "Acanalada" },
+      { "group": "Cuidado", "label": "Lavado", "value": "Según etiqueta del fabricante" }
+    ],
+    "shipping": {
+      "weight": 0.9,
+      "dimensions": { "width": 32, "height": 12, "depth": 26, "unit": "cm" },
+      "shippingClass": "standard",
+      "handlingTime": 1
+    }
   },
   {
     "id": "8",
     "name": "Fundas de cojín Sora",
-    "description": "Set de dos fundas de cojín en lino de aspecto natural, combinables con interiores modernos y paletas de colores neutros.",
+    "description": "Set de dos fundas de cojín con textura de lino y terminaciones cuidadas. Diseñadas para complementar interiores contemporáneos y paletas de colores naturales.",
     "price": 160000,
     "category": "Textiles",
     "categoryId": 4,
-    "images": ["assets/products/Fundas-de-cojín-Sora.jpg"],
+    "image": "assets/products/8/master.jpg",
     "rate": 4.6,
     "active": true,
-    "featuredEligible": false
+    "featuredEligible": false,
+    "variants": [
+      {
+        "id": "8-beige",
+        "color": { "name": "Beige", "hex": "#D5C7B4" },
+        "images": [
+          "assets/products/8/8-beige/01-main.jpg",
+          "assets/products/8/8-beige/02-detail.jpg",
+          "assets/products/8/8-beige/03-context.jpg"
+        ],
+        "stock": 18
+      },
+      {
+        "id": "8-sage",
+        "color": { "name": "Verde salvia", "hex": "#879486" },
+        "images": [
+          "assets/products/8/8-sage/01-main.jpg",
+          "assets/products/8/8-sage/02-detail.jpg",
+          "assets/products/8/8-sage/03-context.jpg"
+        ],
+        "stock": 12
+      }
+    ],
+    "features": [
+      "Set de dos fundas",
+      "Textura de aspecto natural",
+      "Cierre discreto",
+      "Fáciles de combinar con otros textiles",
+      "Ideales para sofás y camas"
+    ],
+    "specifications": [
+      { "group": "Contenido", "label": "Unidades", "value": "2 fundas" },
+      { "group": "Materiales", "label": "Composición", "value": "Mezcla textil de aspecto lino" },
+      { "group": "Dimensiones", "label": "Ancho", "value": "45 cm" },
+      { "group": "Dimensiones", "label": "Alto", "value": "45 cm" },
+      { "group": "Cuidado", "label": "Lavado", "value": "Según etiqueta del fabricante" }
+    ],
+    "shipping": {
+      "weight": 0.5,
+      "dimensions": { "width": 26, "height": 8, "depth": 20, "unit": "cm" },
+      "shippingClass": "standard",
+      "handlingTime": 1
+    }
   },
   {
     "id": "9",
     "name": "Set de vajilla Terra",
-    "description": "Juego de cuatro piezas de cerámica esmaltada con acabado orgánico. Una propuesta minimalista para servir y presentar comidas.",
+    "description": "Juego de cuatro piezas de cerámica esmaltada con acabado orgánico. Una propuesta minimalista para servir y presentar comidas cotidianas.",
     "price": 290000,
     "category": "Cocina y mesa",
     "categoryId": 5,
-    "images": ["assets/products/Set-de-vajilla-Terra.jpg"],
+    "image": "assets/products/9/master.jpg",
     "rate": 4.8,
     "active": true,
-    "featuredEligible": true
+    "featuredEligible": true,
+    "variants": [
+      {
+        "id": "9-ivory",
+        "color": { "name": "Marfil", "hex": "#E8E2D6" },
+        "images": [
+          "assets/products/9/9-ivory/01-main.jpg",
+          "assets/products/9/9-ivory/02-detail.jpg",
+          "assets/products/9/9-ivory/03-context.jpg"
+        ],
+        "stock": 10
+      },
+      {
+        "id": "9-sand",
+        "color": { "name": "Arena", "hex": "#B9A58C" },
+        "images": [
+          "assets/products/9/9-sand/01-main.jpg",
+          "assets/products/9/9-sand/02-detail.jpg",
+          "assets/products/9/9-sand/03-context.jpg"
+        ],
+        "stock": 7
+      }
+    ],
+    "features": [
+      "Juego de cuatro piezas",
+      "Cerámica esmaltada",
+      "Diseño orgánico minimalista",
+      "Apto para presentaciones cotidianas",
+      "Combina con mesas de madera y lino"
+    ],
+    "specifications": [
+      { "group": "Contenido", "label": "Piezas", "value": "4 piezas" },
+      { "group": "Materiales", "label": "Material", "value": "Cerámica esmaltada" },
+      { "group": "Dimensiones", "label": "Plato principal", "value": "26 cm" },
+      { "group": "Dimensiones", "label": "Plato auxiliar", "value": "20 cm" },
+      { "group": "Dimensiones", "label": "Cuenco", "value": "14 cm" },
+      { "group": "Cuidado", "label": "Lavavajillas", "value": "Verificar indicaciones del fabricante" }
+    ],
+    "shipping": {
+      "weight": 2.8,
+      "dimensions": { "width": 32, "height": 18, "depth": 32, "unit": "cm" },
+      "shippingClass": "fragile",
+      "handlingTime": 2
+    }
   },
   {
     "id": "10",
     "name": "Set de vasos Boreal",
-    "description": "Juego de cuatro vasos de vidrio transparente con diseño acanalado. Adecuados para bebidas cotidianas y ocasiones especiales.",
+    "description": "Juego de cuatro vasos de vidrio transparente con diseño acanalado. Una propuesta funcional y elegante para bebidas cotidianas y ocasiones especiales.",
     "price": 95000,
     "category": "Cocina y mesa",
     "categoryId": 5,
-    "images": ["assets/products/Set-de-vasos-Boreal.jpg"],
+    "image": "assets/products/10/master.jpg",
     "rate": 4.5,
     "active": true,
-    "featuredEligible": false
+    "featuredEligible": false,
+    "variants": [
+      {
+        "id": "10-clear",
+        "color": { "name": "Transparente", "hex": "#DDE2DF" },
+        "images": [
+          "assets/products/10/10-clear/01-main.jpg",
+          "assets/products/10/10-clear/02-detail.jpg",
+          "assets/products/10/10-clear/03-context.jpg"
+        ],
+        "stock": 20
+      },
+      {
+        "id": "10-smoke",
+        "color": { "name": "Gris humo", "hex": "#777C7B" },
+        "images": [
+          "assets/products/10/10-smoke/01-main.jpg",
+          "assets/products/10/10-smoke/02-detail.jpg",
+          "assets/products/10/10-smoke/03-context.jpg"
+        ],
+        "stock": 12
+      }
+    ],
+    "features": [
+      "Juego de cuatro vasos",
+      "Vidrio de acabado transparente o tintado",
+      "Diseño acanalado",
+      "Apto para bebidas frías",
+      "Fácil de combinar con distintas vajillas"
+    ],
+    "specifications": [
+      { "group": "Contenido", "label": "Unidades", "value": "4 vasos" },
+      { "group": "Materiales", "label": "Material", "value": "Vidrio" },
+      { "group": "Dimensiones", "label": "Altura", "value": "10 cm" },
+      { "group": "Dimensiones", "label": "Capacidad", "value": "350 ml" },
+      { "group": "Diseño", "label": "Textura", "value": "Acanalada" }
+    ],
+    "shipping": {
+      "weight": 1.3,
+      "dimensions": { "width": 24, "height": 16, "depth": 24, "unit": "cm" },
+      "shippingClass": "fragile",
+      "handlingTime": 1
+    }
   },
   {
     "id": "11",
     "name": "Monitor Arc 27",
-    "description": "Monitor de 27 pulgadas con resolución QHD y diseño de bordes delgados. Pensado para productividad, programación y entretenimiento.",
+    "description": "Monitor de 27 pulgadas con resolución QHD y diseño de bordes delgados. Una pantalla pensada para productividad, programación y entretenimiento.",
     "price": 1850000,
     "category": "Escritorio",
     "categoryId": 6,
-    "images": ["assets/products/Monitor-Arc-27.jpg"],
+    "image": "assets/products/11/master.jpg",
     "rate": 4.7,
     "active": true,
-    "featuredEligible": true
+    "featuredEligible": true,
+    "variants": [
+      {
+        "id": "11-silver",
+        "color": { "name": "Plata", "hex": "#BFC3C4" },
+        "images": [
+          "assets/products/11/11-silver/01-main.jpg",
+          "assets/products/11/11-silver/02-detail.jpg",
+          "assets/products/11/11-silver/03-context.jpg"
+        ],
+        "stock": 5
+      },
+      {
+        "id": "11-black",
+        "color": { "name": "Negro", "hex": "#303331" },
+        "images": [
+          "assets/products/11/11-black/01-main.jpg",
+          "assets/products/11/11-black/02-detail.jpg",
+          "assets/products/11/11-black/03-context.jpg"
+        ],
+        "stock": 4
+      }
+    ],
+    "features": [
+      "Pantalla de 27 pulgadas",
+      "Resolución QHD",
+      "Diseño de bordes delgados",
+      "Adecuado para productividad y entretenimiento",
+      "Diseño minimalista para espacios de trabajo"
+    ],
+    "specifications": [
+      { "group": "Pantalla", "label": "Tamaño", "value": "27 pulgadas" },
+      { "group": "Pantalla", "label": "Resolución", "value": "2560 × 1440 (QHD)" },
+      { "group": "Pantalla", "label": "Formato", "value": "16:9" },
+      { "group": "Pantalla", "label": "Panel", "value": "IPS (referencial)" },
+      { "group": "Conectividad", "label": "Entradas", "value": "HDMI y DisplayPort (referencial)" },
+      { "group": "Diseño", "label": "Montaje", "value": "Base de escritorio" }
+    ],
+    "shipping": {
+      "weight": 5.8,
+      "dimensions": { "width": 68, "height": 45, "depth": 16, "unit": "cm" },
+      "shippingClass": "fragile-oversized",
+      "handlingTime": 3
+    }
   },
   {
     "id": "12",
     "name": "Teclado inalámbrico Slate",
-    "description": "Teclado inalámbrico compacto de perfil bajo, con distribución minimalista y acabado gris oscuro. Ideal para escritorios modernos.",
+    "description": "Teclado inalámbrico compacto de perfil bajo, con distribución minimalista y acabado moderno. Ideal para escritorios contemporáneos y espacios de trabajo ordenados.",
     "price": 320000,
     "category": "Escritorio",
     "categoryId": 6,
-    "images": ["assets/products/Teclado-inalámbrico-Slate.jpg"],
+    "image": "assets/products/12/master.jpg",
     "rate": 4.6,
     "active": true,
-    "featuredEligible": false
+    "featuredEligible": false,
+    "variants": [
+      {
+        "id": "12-graphite",
+        "color": { "name": "Grafito", "hex": "#45494A" },
+        "images": [
+          "assets/products/12/12-graphite/01-main.jpg",
+          "assets/products/12/12-graphite/02-detail.jpg",
+          "assets/products/12/12-graphite/03-context.jpg"
+        ],
+        "stock": 14
+      },
+      {
+        "id": "12-ivory",
+        "color": { "name": "Marfil", "hex": "#E8E2D6" },
+        "images": [
+          "assets/products/12/12-ivory/01-main.jpg",
+          "assets/products/12/12-ivory/02-detail.jpg",
+          "assets/products/12/12-ivory/03-context.jpg"
+        ],
+        "stock": 9
+      }
+    ],
+    "features": [
+      "Diseño compacto y minimalista",
+      "Teclas de perfil bajo",
+      "Conectividad inalámbrica",
+      "Ideal para espacios de trabajo reducidos",
+      "Acabado moderno y discreto"
+    ],
+    "specifications": [
+      { "group": "Diseño", "label": "Formato", "value": "Compacto" },
+      { "group": "Diseño", "label": "Perfil", "value": "Bajo" },
+      { "group": "Conectividad", "label": "Conexión", "value": "Inalámbrica (referencial)" },
+      { "group": "Conectividad", "label": "Interfaz", "value": "Bluetooth (referencial)" },
+      { "group": "Compatibilidad", "label": "Sistemas", "value": "Windows y macOS (referencial)" }
+    ],
+    "shipping": {
+      "weight": 0.8,
+      "dimensions": { "width": 36, "height": 4, "depth": 15, "unit": "cm" },
+      "shippingClass": "standard",
+      "handlingTime": 2
+    }
   }
 ]

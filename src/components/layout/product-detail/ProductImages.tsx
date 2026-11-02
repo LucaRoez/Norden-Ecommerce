@@ -30,7 +30,10 @@ const ProductImages = ({ images, alt }: ProductImagesProps) => {
     
     return (
         <div
-            className="overflow-hidden rounded-xl cursor-zoom-in p-5"
+            className="
+                overflow-hidden rounded-xl cursor-zoom-in p-5 pt-0 gap-5
+                grid grid-cols-1 xl:grid-cols-[5rem_1fr] xl:items-start
+            "
             onMouseEnter={() => setZoom(true)}
             onMouseLeave={() => {
                 setZoom(false);
@@ -38,18 +41,18 @@ const ProductImages = ({ images, alt }: ProductImagesProps) => {
             }}
             onMouseMove={handleMouseMove}
         >
-            <div className="overflow-hidden rounded-xl h-96 sm:h-[500px] mb-5">
+            <div className="overflow-hidden rounded-xl h-96 md:h-[500px] xl:h-[600px]">
                 <img
                     src={getAsset(images[activeImage])}
                     alt={alt}
                     className="w-full h-full object-cover transition-transform duration-300 mb-15"
                     style={{
-                    transform: zoom ? "scale(1.7)" : "scale(1)",
-                    transformOrigin: origin,
+                        transform: zoom ? "scale(1.7)" : "scale(1)",
+                        transformOrigin: origin,
                     }}
                 />
             </div>
-            <div className="flex gap-3 overflow-x-auto">
+            <div className="flex gap-3 overflow-x-auto xl:flex-col xl:overflow-y-auto xl:order-first">
                 {
                     images.map((src, index) => (
                         <button

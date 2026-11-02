@@ -77,7 +77,7 @@ const FeaturedProducts = () => {
                                             h-70 min-[490px]:h-100 min-[640px]:h-60 min-[840px]:h-80 min-[1024px]:h-40 min-[1320px]:h-50
                                         ">
                                             <img
-                                                src={getAsset(product.images[0])}
+                                                src={getAsset(product.image)}
                                                 alt={product.name}
                                                 className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
                                             />

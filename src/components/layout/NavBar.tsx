@@ -41,15 +41,17 @@ export default function Navbar() {
                     {/* Menú Mobile */}
                     <div className="lg:hidden">
                         <Sheet>
-                            <SheetTrigger>
-                                <Button
-                                    size="icon"
-                                    className="shrink-0 text-secondary hover:bg-surface/20 hover:text-primary lg:hidden size-10"
-                                    aria-label="Abrir menú"
-                                >
-                                    <Menu className="size-5" />
-                                </Button>
-                            </SheetTrigger>
+                            <SheetTrigger
+                                render={                                    
+                                    <Button
+                                        size="icon"
+                                        className="shrink-0 text-secondary hover:bg-surface/20 hover:text-primary lg:hidden size-10"
+                                        aria-label="Abrir menú"
+                                    >
+                                        <Menu className="size-5" />
+                                    </Button>
+                                }
+                            />
 
                             <SheetContent
                                 side="left"
@@ -185,7 +187,10 @@ export default function Navbar() {
                         <Link
                             key={category.id}
                             to={`/productos?categoria=${category.slug}`}
-                            className="border-b border-surface/10 px-2 py-4 text-sm transition-colors hover:text-secondary"
+                            className="
+                                border-b border-surface/10 px-2 py-4 text-sm transition-colors duration-300
+                                hover:text-secondary active:text-primary-dark active:duration-0
+                            "
                         >
                             {category.name}
                         </Link>
