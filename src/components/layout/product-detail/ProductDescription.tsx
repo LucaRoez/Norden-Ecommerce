@@ -26,14 +26,14 @@ const ProductDescription = ({ product }: { product: Product }) => {
     return (
         <div className="p-5">
             <Tabs defaultValue="features" className="w-full">
-                <TabsList className="w-full border-b border-border">
-                    <TabsTrigger value="features" className="w-1/2 text-center">
+                <TabsList className="w-full text-center py-6 sm:py-7 lg:py-8 mb-0 md:mb-2 lg:mb-4">
+                    <TabsTrigger value="features" className="flex-1 px-0 text-base sm:text-lg lg:text-xl">
                         Descripción
                     </TabsTrigger>
-                    <TabsTrigger value="specifications" className="w-1/2 text-center">
+                    <TabsTrigger value="specifications" className="flex-1 px-0 sm:text-base lg:text-lg">
                         Características
                     </TabsTrigger>
-                    <TabsTrigger value="shipping">
+                    <TabsTrigger value="shipping" className="flex-1 px-0 sm:text-base lg:text-lg">
                         Envío
                     </TabsTrigger>
                 </TabsList>
@@ -41,7 +41,10 @@ const ProductDescription = ({ product }: { product: Product }) => {
                     <ul>
                         {
                             product.features.map((feature, index) => (
-                                <li key={index} className="text-text-secondary">
+                                <li key={index} className={`
+                                    text-text-secondary text-base sm:text-lg lg:text-xl 
+                                    ${index === product.features.length - 1 ? '' : 'mb-2'}
+                                `}>
                                     {feature}
                                 </li>
                             ))
@@ -50,28 +53,27 @@ const ProductDescription = ({ product }: { product: Product }) => {
                 </TabsContent>
                 <TabsContent value="specifications" className="p-4">
                     {
-                        Object.entries(groupedSpecifications).map(([group, specs]) => (
-                            <div key={group} className="mb-4">
-                                <h4 className="text-lg font-bold sm:text-xl lg:text-2xl">{group}</h4>
-                                <dl className="list-disc pl-5">
-                                    {
-                                        specs?.map((spec) => (
-                                            <div
-                                                key={`${group}-${spec.label}`}
-                                                className="flex justify-between gap-4"
-                                            >
-                                                <dt key={spec.label} className="text-text-secondary font-medium">
-                                                    {spec.label}
-                                                </dt>
-                                                <dd key={spec.value} className="text-text-secondary text-right">
-                                                    {spec.value}
-                                                </dd>
-                                            </div>
-                                        ))
-                                    }
-                                </dl>
-                            </div>
-                        ))
+                        Object.entries(groupedSpecifications).map(([group, specs], index) => {
+                            const isLastGroup = index === Object.entries(groupedSpecifications).length - 1;
+                            return (
+                                <div key={group} className={`${isLastGroup ? 'mb-0' : 'mb-4 sm:mb-7 lg:mb-10'}`}>
+                                    <h4 className="text-lg font-bold mb-2 sm:text-xl lg:text-2xl sm:mb-4 lg:mb-5">{group}</h4>
+                                    <dl className={`list-disc pl-5 ${isLastGroup ? 'mb-0' : 'mb-2 sm:mb-4 lg:mb-5'}`}>
+                                        {
+                                            specs?.map((spec) => (
+                                                <div
+                                                    key={`${group}-${spec.label}`}
+                                                    className="flex justify-between gap-4 text-text-secondary"
+                                                >
+                                                    <dt className="font-semibold text-sm sm:text-base lg:lg">{spec.label}</dt>
+                                                    <dd className="text-right text-sm sm:text-base lg:lg">{spec.value}</dd>
+                                                </div>
+                                            ))
+                                        }
+                                    </dl>
+                                </div>
+                            );
+                        })
                     }
                 </TabsContent>
                 <TabsContent value="shipping" className="p-4">
@@ -88,13 +90,15 @@ const ProductDescription = ({ product }: { product: Product }) => {
 const ShippingRow = ({
     label,
     value,
+    isLast
 }: {
     label: string;
     value: string;
+    isLast?: boolean;
 }) => (
-    <div className="flex justify-between gap-4">
-        <span className="text-text-secondary">{label}</span>
-        <span className="text-right">{value}</span>
+    <div className={`flex justify-between gap-4 text-text-secondary ${isLast ? '' : 'mb-3 sm:mb-5 lg:mb-8'}`}>
+        <span className="font-semibold text-base sm:text-lg lg:xl">{label}</span>
+        <span className="text-right text-base sm:text-lg lg:xl">{value}</span>
     </div>
 );
 

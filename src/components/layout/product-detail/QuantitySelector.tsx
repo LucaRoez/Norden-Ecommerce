@@ -18,10 +18,13 @@ const QuantitySelector = ({
     };
 
     return (
-        <div className="space-y-3">
-            <label className="font-medium">Cantidad</label>
+        <div className="space-y-3 flex flex-col gap-2 sm:gap-3">
+            <label className="font-medium lg:text-lg mb-0">Cantidad</label>
 
-            <div className="flex items-center w-fit border border-border rounded-lg">
+            <div className="
+                flex items-center w-fit border border-border rounded-lg
+                text-sm sm:text-base lg:text-lg
+            ">
                 <button
                     type="button"
                     onClick={decrease}

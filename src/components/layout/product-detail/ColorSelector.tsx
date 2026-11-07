@@ -20,9 +20,9 @@ const ColorSelector = ({
     );
 
     return (
-        <div className="space-y-3">
-            <div className="flex items-center gap-2">
-                <span className="font-medium">Color:</span>
+        <div className="space-y-3 flex flex-col gap-3 sm:gap-4 lg:gap-5">
+            <div className="flex items-center gap-2 mb-0">
+                <span className="font-medium lg:text-lg">Color:</span>
                 <span className="text-text-secondary">
                     {selectedColor?.name}
                 </span>
