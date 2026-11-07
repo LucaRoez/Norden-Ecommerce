@@ -11,13 +11,13 @@ const Banner = () => {
             <div className="pointer-events-none absolute inset-0 bg-transparent transition-colors duration-300 group-hover:bg-primary/50" />
 
             <div className="relative px-8 text-text transition-colors duration-300 group-hover:text-surface md:px-16">
-                <h1 className="text-4xl font-bold md:text-6xl">
-                {banner.title}
-                </h1>
+                <h3 className="text-4xl font-bold md:text-6xl">
+                    {banner.title}
+                </h3>
 
-                <p className="mt-4 text-lg">
-                {banner.subtitle}
-                </p>
+                <h4 className="mt-4 text-lg">
+                    {banner.subtitle}
+                </h4>
 
                 <a
                     href={banner.buttonLink}

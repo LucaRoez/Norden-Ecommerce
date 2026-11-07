@@ -11,9 +11,9 @@ const Hero = () => {
 				min-[1024px]:right-[9%] min-[1106px]:right-[15%] min-[1216px]:right-[21%] min-[1316px]:right-[26%] min-[1464px]:right-[32%]
 			">
 				<h1 className="text-3xl font-bold text-4xl">Diseño que mejora tu espacio</h1>
-				<p className="text-lg mt-4 text-base lg:text-2xl">
+				<h2 className="text-lg mt-4 text-base lg:text-2xl">
 					Productos funcionales, estéticos y duraderos para tu hogar y oficina.
-				</p>
+				</h2>
 				<Link to="productos?categoria=todas-las-categorias">
 					<Button className="absolute left-5 min-[656px]:left-0 mt-8 p-6 text-base lg:text-lg rounded-sm bg-surface text-primary
 						hover:bg-primary hover:text-surface active:ring-2 active:ring-focus/50 active:ring-offset-0

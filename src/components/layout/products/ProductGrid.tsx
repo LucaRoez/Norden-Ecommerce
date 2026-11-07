@@ -46,7 +46,7 @@ const ProductGrid = ({ products }: ProductGridProps) => {
                                                 {product.description}
                                             </p>
                                             <div className="my-4 flex justify-between">
-                                                <p className="font-semibold">{formatToCurrency(product.price, 'PYG', 'es-PY')}</p>
+                                                <span className="font-semibold">{formatToCurrency(product.price, 'PYG', 'es-PY')}</span>
                                                 <Rating value={product.rate} />
                                             </div>
                                         </CardContent>

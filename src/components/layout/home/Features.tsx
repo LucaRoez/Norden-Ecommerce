@@ -47,7 +47,7 @@ const FeaturedProducts = () => {
 
     return (
         <section id="features" className="bg-light py-12">
-            <h2 className="w-full pl-5 flex flex-start font-bold text-text text-2xl min-[998px]:text-3xl my-4">Productos destacadas</h2>
+            <h3 className="w-full pl-5 flex flex-start font-bold text-text text-2xl min-[998px]:text-3xl my-4">Productos destacadas</h3>
             <div className="grid grid-cols-1 gap-4 mt-4">
                 <Carousel
                     opts={{ align: "start", loop: true }}
@@ -84,9 +84,9 @@ const FeaturedProducts = () => {
                                         </div>
 
                                         <div className="px-3 flex flex-col justify-between items-center">
-                                            <h3 className="mt-3 font-semibold text-text text-lg min-md:text-xl min-lg:text-2xl">
+                                            <h4 className="mt-3 font-semibold text-text text-lg min-md:text-xl min-lg:text-2xl">
                                                 {product.name}
-                                            </h3>
+                                            </h4>
                                             <div className="mt-1">
                                                 <p className="mt-1 text-text-text-secondary text-sm min-md:text-base min-lg:text-lg">
                                                     {formatToCurrency(product.price, 'PYG', 'es-PY')}

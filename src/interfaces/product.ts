@@ -28,7 +28,7 @@ export interface ProductVariant {
 export interface ProductSpecification {
   label: string;
   value: string;
-  group?: string;
+  group: string;
 }
 
 export interface ProductShipping {

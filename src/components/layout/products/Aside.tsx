@@ -38,7 +38,7 @@ const ProductsAside = ({
     return (
         <aside className="w-full space-y-6 lg:w-64 lg:shrink-0 bg-primary p-5 text-secondary-light">
             <div>
-                <h2 className="text-lg font-semibold">Filtros</h2>
+                <h3 className="text-lg font-semibold">Filtros</h3>
                 <p className="text-sm text-secondary-pale">
                     Ajustá los resultados del catálogo.
                 </p>
@@ -47,7 +47,7 @@ const ProductsAside = ({
             <Separator />
 
             <section className="space-y-1">
-                <h3 className="font-medium">Categorías</h3>
+                <h4 className="font-medium">Categorías</h4>
                 <Select
                     value={selectedCategory}
                     onValueChange={(value) => onCategoryChange(value === null ? 0 : value)}
@@ -74,7 +74,7 @@ const ProductsAside = ({
             <Separator />
 
             <section className="space-y-3">
-                    <h3 className="font-medium">Precio</h3>
+                    <h4 className="font-medium">Precio</h4>
 
                     <Slider
                         min={0}

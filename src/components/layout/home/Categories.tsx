@@ -16,7 +16,7 @@ const categories = getCategories();
 const Categories = () => {
     return (
         <section id="categories" className="flex flex-col items-center justify-center py-8 text-center">
-            <h2 className="w-full pl-5 flex flex-start font-bold text-text text-2xl min-[998px]:text-3xl my-4">Categorias destacadas</h2>
+            <h3 className="w-full pl-5 flex flex-start font-bold text-text text-2xl min-[998px]:text-3xl my-4">Categorias destacadas</h3>
             <div className="grid grid-cols-1 gap-4 mt-4">
                 <Carousel
                     opts={{ align: "start", loop: true }}
@@ -55,9 +55,9 @@ const Categories = () => {
                                     </div>
 
                                     <div className="pb-2 px-2">
-                                        <h3 className="mt-3 font-semibold text-text text-lg min-md:text-xl min-lg:text-2xl">
+                                        <h4 className="mt-3 font-semibold text-text text-lg min-md:text-xl min-lg:text-2xl">
                                             {category.name}
-                                        </h3>
+                                        </h4>
                                         <p className="mt-1 text-text-text-secondary text-sm min-md:text-base min-lg:text-lg">
                                             {category.description}
                                         </p>

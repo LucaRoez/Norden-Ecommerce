@@ -17,9 +17,9 @@ const Hero = ({ category }: HeroProps) => {
 		>
 			<div className="flex flex-col justify-center items-center gap-4">
 				<h1 className="text-3xl font-bold text-4xl [text-shadow:0px_0px_4px_#E5DED3]">{category.name}</h1>
-				<p className="text-lg mt-4 text-base lg:text-2xl [text-shadow:0px_0px_2px_#E5DED3]">
+				<h2 className="text-lg mt-4 px-5 font-semibold text-base lg:text-2xl [text-shadow:0px_0px_2px_#E5DED3]">
 					{category.description}
-				</p>
+				</h2>
                 <div className="w-full flex items-start xs:pl-5 sm:pl-25">
 					<Link to="/">
 						<Button className="mt-8 p-5 text-base lg:text-lg lg:p-6 rounded-sm bg-surface text-primary

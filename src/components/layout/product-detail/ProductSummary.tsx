@@ -30,8 +30,8 @@ const ProductSummary = ({ product, selectedVariant, onVariantChange }: ProductSu
     <div className="flex flex-col justify-between p-5">
         <div className="mb-4 flex flex-col gap-4">
             <h1 className="text-2xl font-bold sm:text-3xl lg:text-4xl">{product.name}</h1>
-            <p className="text-text-secondary sm:text-lg lg:text-xl">{product.description}</p>
-            <p className="text-lg font-bold sm:text-xl lg:text-2xl">{formatToCurrency(product.price, 'PYG', 'es-PY')}</p>
+            <h2 className="text-text-secondary sm:text-lg lg:text-xl">{product.description}</h2>
+            <span className="text-lg font-bold sm:text-xl lg:text-2xl">{formatToCurrency(product.price, 'PYG', 'es-PY')}</span>
             <ColorSelector
                 colors={product.variants.map((variant) => ({
                     id: variant.id,
