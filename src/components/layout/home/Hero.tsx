@@ -16,7 +16,7 @@ const Hero = () => {
 				</h2>
 				<Link to="productos?categoria=todas-las-categorias">
 					<Button className="absolute left-5 min-[656px]:left-0 mt-8 p-6 text-base lg:text-lg rounded-sm bg-surface text-primary
-						hover:bg-primary hover:text-surface active:ring-2 active:ring-focus/50 active:ring-offset-0
+						hover:bg-primary hover:text-surface active:ring-2 active:ring-focus/50 active:ring-offset-0 hover:cursor-pointer
 					">
 						Ver Colección
 					</Button>

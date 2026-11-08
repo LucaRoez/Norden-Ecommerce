@@ -19,9 +19,12 @@ import {
 
 import { Link } from "react-router";
 import { getCategories } from "@/services/categoryServices";
+import { useCart } from "@/hooks/useCart";
+
 const categories = getCategories();
 
 export default function Navbar() {
+    const { count } = useCart();
     const [search, setSearch] = useState("");
 
     function handleSearch(event: React.FormEvent<HTMLFormElement>) {
@@ -129,26 +132,30 @@ export default function Navbar() {
 
                     {/* Botones de acción */}
                     <div className="ml-auto flex shrink-0 items-center gap-2">
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            aria-label="Mi cuenta"
-                            className="hidden text-secondary hover:bg-surface/20 hover:button-primary-hover sm:inline-flex"
-                        >
-                            <UserRound className="size-5" />
-                        </Button>
+                        <Link to="/cuenta" className="">
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                aria-label="Mi cuenta"
+                                className="hidden text-secondary hover:bg-surface/20 hover:button-primary-hover sm:inline-flex"
+                            >
+                                <UserRound className="size-5" />
+                            </Button>
+                        </Link>
 
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            aria-label="Carrito de compras"
-                            className="relative text-secondary hover:bg-surface/20 hover:button-primary-hover"
-                        >
-                            <ShoppingCart className="size-5" />
-                            <span className="absolute -right-0.5 -top-0.5 flex size-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-secondary">
-                                0
-                            </span>
-                        </Button>
+                        <Link to="/carrito" className="">
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                aria-label="Carrito de compras"
+                                className="relative text-secondary hover:bg-surface/20 hover:button-primary-hover"
+                            >
+                                <ShoppingCart className="size-5" />
+                                <span className="absolute -right-0.5 -top-0.5 flex size-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-secondary">
+                                    { count }
+                                </span>
+                            </Button>
+                        </Link>
                     </div>
                 </div>
 

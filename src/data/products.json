@@ -50,6 +50,7 @@
     ],
     "shipping": {
       "weight": 1.2,
+      "weightUnit": "Kg",
       "dimensions": { "width": 20, "height": 34, "depth": 20, "unit": "cm" },
       "shippingClass": "fragile",
       "handlingTime": 2
@@ -105,6 +106,7 @@
     ],
     "shipping": {
       "weight": 4.5,
+      "weightUnit": "Kg",
       "dimensions": { "width": 52, "height": 78, "depth": 10, "unit": "cm" },
       "shippingClass": "fragile-oversized",
       "handlingTime": 3
@@ -160,6 +162,7 @@
     ],
     "shipping": {
       "weight": 1.8,
+      "weightUnit": "Kg",
       "dimensions": { "width": 28, "height": 48, "depth": 28, "unit": "cm" },
       "shippingClass": "standard",
       "handlingTime": 2
@@ -215,6 +218,7 @@
     ],
     "shipping": {
       "weight": 2.4,
+      "weightUnit": "Kg",
       "dimensions": { "width": 40, "height": 30, "depth": 40, "unit": "cm" },
       "shippingClass": "standard",
       "handlingTime": 3
@@ -269,6 +273,7 @@
     ],
     "shipping": {
       "weight": 1.1,
+      "weightUnit": "Kg",
       "dimensions": { "width": 32, "height": 14, "depth": 24, "unit": "cm" },
       "shippingClass": "standard",
       "handlingTime": 1
@@ -323,6 +328,7 @@
     ],
     "shipping": {
       "weight": 1.5,
+      "weightUnit": "Kg",
       "dimensions": { "width": 42, "height": 35, "depth": 42, "unit": "cm" },
       "shippingClass": "voluminous",
       "handlingTime": 2
@@ -377,6 +383,7 @@
     ],
     "shipping": {
       "weight": 0.9,
+      "weightUnit": "Kg",
       "dimensions": { "width": 32, "height": 12, "depth": 26, "unit": "cm" },
       "shippingClass": "standard",
       "handlingTime": 1
@@ -430,7 +437,8 @@
       { "group": "Cuidado", "label": "Lavado", "value": "Según etiqueta del fabricante" }
     ],
     "shipping": {
-      "weight": 0.5,
+      "weight": 500,
+      "weightUnit": "g",
       "dimensions": { "width": 26, "height": 8, "depth": 20, "unit": "cm" },
       "shippingClass": "standard",
       "handlingTime": 1
@@ -486,6 +494,7 @@
     ],
     "shipping": {
       "weight": 2.8,
+      "weightUnit": "Kg",
       "dimensions": { "width": 32, "height": 18, "depth": 32, "unit": "cm" },
       "shippingClass": "fragile",
       "handlingTime": 2
@@ -540,6 +549,7 @@
     ],
     "shipping": {
       "weight": 1.3,
+      "weightUnit": "Kg",
       "dimensions": { "width": 24, "height": 16, "depth": 24, "unit": "cm" },
       "shippingClass": "fragile",
       "handlingTime": 1
@@ -595,6 +605,7 @@
     ],
     "shipping": {
       "weight": 5.8,
+      "weightUnit": "Kg",
       "dimensions": { "width": 68, "height": 45, "depth": 16, "unit": "cm" },
       "shippingClass": "fragile-oversized",
       "handlingTime": 3
@@ -649,6 +660,7 @@
     ],
     "shipping": {
       "weight": 0.8,
+      "weightUnit": "Kg",
       "dimensions": { "width": 36, "height": 4, "depth": 15, "unit": "cm" },
       "shippingClass": "standard",
       "handlingTime": 2

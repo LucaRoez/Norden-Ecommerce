@@ -11,9 +11,10 @@ interface ProductSummaryProps {
     product: Product;
     selectedVariant: ProductVariant;
     onVariantChange: (variantID: string) => void;
+    handleAddToCart: (productId: string, variantId: string, quantity: number) => void;
 }
 
-const ProductSummary = ({ product, selectedVariant, onVariantChange }: ProductSummaryProps) => {
+const ProductSummary = ({ product, selectedVariant, onVariantChange, handleAddToCart }: ProductSummaryProps) => {
     const [quantity, setQuantity] = useState(1);
 
     const handleVariantChange = (variantID: string) => {
@@ -64,10 +65,14 @@ const ProductSummary = ({ product, selectedVariant, onVariantChange }: ProductSu
             </div>
         </div>
         <div>
-            <Button className="
-                mt-2 w-full px-4 py-2 rounded-sm bg-primary text-surface sm:text-lg lg:text-xl transition-colors duration-400
-                hover:bg-button-secondary hover:text-text active:text-surface active:bg-primary active:duration-0
-            ">
+            <Button onClick={(event) => {
+                event.stopPropagation();
+                handleAddToCart(product.id, selectedVariant.id, quantity);
+                }} className="
+                    mt-2 w-full px-4 py-2 rounded-sm bg-primary text-surface sm:text-lg lg:text-xl transition-colors duration-400
+                    hover:bg-button-secondary hover:text-text active:text-surface active:bg-primary active:duration-0 hover:cursor-pointer
+                "
+            >
                 Add to Cart
             </Button>
         </div>

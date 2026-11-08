@@ -13,6 +13,7 @@ import Rating from "../Rating";
 
 import { getAsset } from "@/utils/assets";
 import { formatToCurrency } from "@/utils/formats";
+import { useCart } from "@/hooks/useCart";
 
 import type { Product } from "@/interfaces/product.ts";
 import { getFeaturedProducts } from "@/services/productServices.ts";
@@ -38,11 +39,13 @@ const FeaturedProducts = () => {
     }
     */
 
+    const { addItem } = useCart();
     const featured: Product[] = getFeaturedProducts();
 
     if (featured.length === 0) {
         return null;
     }
+
     
 
     return (
@@ -70,7 +73,7 @@ const FeaturedProducts = () => {
                                         border border-border rounded-sm pl-0 bg-surface-raised
                                     "
                                 >
-                            <Link to={`/productos/${product.id}`} className="block w-full h-full">
+                            <Link to={`/productos/${product.id}`} className="block w-full h-full cursor-pointer">
                                     <div className="group block flex flex-col justify-between items-center h-full">
                                         <div className="
                                             w-full overflow-hidden rounded-sm
@@ -95,9 +98,13 @@ const FeaturedProducts = () => {
                                             </div>
                                         </div>
                                         <div className="w-full flex flex-col items-end mr-2 mb-2">
-                                            <Button className="
-                                                rounded-sm px-3 py-2 mt-2 text-sm lg:text-base bg-primary text-white hover:bg-primary-dark
-                                                transition-colors duration-300 active:ring-1 active:ring-focus/50 active:ring-offset-0
+                                            <Button onClick={(event) => {
+                                                event.stopPropagation();
+                                                addItem(product.id, product.variants[0].id);
+                                            }} className="
+                                                rounded-sm px-3 py-2 mt-2 text-sm lg:text-base bg-button-primary text-surface hover:bg-button-secondary
+                                                transition-colors duration-400 hover:text-text active:text-surface active:duration-0
+                                                hover:cursor-pointer
                                             ">
                                                 Agregar al carrito
                                             </Button>

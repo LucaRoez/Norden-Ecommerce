@@ -13,18 +13,22 @@ import Rating from "../Rating";
 import { getAsset } from "@/utils/assets";
 import { formatToCurrency } from "@/utils/formats";
 import type { Product } from "@/interfaces/product";
+import { useCart } from "@/hooks/useCart";
 
 interface ProductGridProps {
   products: Product[];
 };
 
 const ProductGrid = ({ products }: ProductGridProps) => {
+    const { addItem } = useCart();
+
     return (
         <section id="product-grid" className="mx-5 my-5">
             <div className="grid gap-4 grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {
                     products.map((product) => {
                         const imageUrl = getAsset(product.image);
+    
                         return (
                             <article>
                                 <Link to={`/productos/${product.id}`}>
@@ -51,11 +55,18 @@ const ProductGrid = ({ products }: ProductGridProps) => {
                                             </div>
                                         </CardContent>
 
-                                        <CardFooter className="justify-end">
-                                            <Button className="
-                                                w-[70%] transition-colors duration-400 rounded-sm bg-button-primary text-surface
-                                                hover:bg-button-secondary hover:text-text active:text-surface active:duration-0
-                                            ">
+                                        <CardFooter className="justify-end flex flex-col items-end">
+                                            <Button 
+                                                onClick={(event) => {
+                                                    event.stopPropagation();
+                                                    addItem(product.id, product.variants[0].id);
+                                                }} 
+                                                className="
+                                                    w-[70%] transition-colors duration-400 rounded-sm bg-button-primary text-surface
+                                                    hover:bg-button-secondary hover:text-text active:text-surface active:duration-0
+                                                    hover:cursor-pointer px-2 sm:px-4 lg:px-5
+                                                "
+                                            >
                                                 Agregar al carrito
                                             </Button>
                                         </CardFooter>

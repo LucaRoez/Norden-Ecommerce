@@ -1,5 +1,5 @@
 import productsData from "../data/products.json";
-import type { Product } from "../interfaces/product.ts";
+import type { Product, ShippingClass } from "../interfaces/product.ts";
 import featuredProducts from "@/data/featured-products.json";
 
 const products: Product[] = productsData as Product[];
@@ -61,7 +61,7 @@ export const getFeaturedProducts = (): Product[] => {
     : getDefaultFeaturedIds();
 
   return selectedIds
-    .filter((id) => availableIds.has(id as number))
+    .filter((id) => availableIds.has(id as string))
     .map((id) => availableProducts.find((product) => product.id === id)!) // regla básica
     .slice(0, FEATURED_LIMIT);
 };
@@ -92,3 +92,14 @@ export async function getFeaturedProductsByDate(
     return eligible[(start + index) % eligible.length];                   // regla temporal
   });
 }
+
+
+// Micro Funciones
+
+export const shippingClassLabels: Record<ShippingClass, string> = {
+    standard: "Estándar",
+    voluminous: "Voluminoso",
+    oversized: "Sobredimensionado",
+    fragile: "Frágil",
+    heavy: "Pesado",
+};

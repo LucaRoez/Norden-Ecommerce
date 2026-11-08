@@ -8,9 +8,11 @@ import ProductDescription from "@/components/layout/product-detail/ProductDescri
 
 import { getProductByID } from "@/services/productServices";
 import { getCategoryByID, getCategories } from "@/services/categoryServices";
+import { useCart } from "@/hooks/useCart";
 
 
 const ProductDetail = () => {
+    const { addItem } = useCart();
     const { id } = useParams<{ id: string }>();
     const [selectedVariantID, setSelectedVariantID] = useState<string | null>(
         null
@@ -39,7 +41,7 @@ const ProductDetail = () => {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2">
                     <ProductImages key={selectedVariant.id} images={selectedVariant.images} alt={product.name + " - " + selectedVariant.id} />
-                    <ProductSummary key={product.id} product={product} selectedVariant={selectedVariant} onVariantChange={setSelectedVariantID} />
+                    <ProductSummary key={product.id} product={product} selectedVariant={selectedVariant} onVariantChange={setSelectedVariantID} handleAddToCart={addItem} />
                 </div>
             </section>
             <section>

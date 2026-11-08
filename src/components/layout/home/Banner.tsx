@@ -21,7 +21,11 @@ const Banner = () => {
 
                 <a
                     href={banner.buttonLink}
-                    className="mt-6 inline-block rounded-sm bg-primary px-6 py-3 text-surface transition-colors duration-300 hover:bg-surface hover:text-primary active:ring-3 active:ring-focus/60 active:ring-offset-0"
+                    className="
+                        mt-6 inline-block rounded-sm bg-primary px-6 py-3 text-surface transition-colors duration-300
+                        hover:bg-surface hover:text-primary active:ring-3 active:ring-focus/60 active:ring-offset-0
+                        hover:cursor-pointer
+                    "
                 >
                     {banner.buttonText}
                 </a>
