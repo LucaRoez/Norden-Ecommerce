@@ -1,12 +1,15 @@
 import weeklyBanners from "@/data/promo-banner.json";
+import { getAsset } from "@/utils/assets";
 
 const Banner = () => {
     const day = new Date().getDay();
     const banner = weeklyBanners[day];
+    if (!banner.image) banner.image = "/src/assets/home/promo-banner.jpg";
+    const bannerImage = getAsset(banner.image);
     return (
         <section
             className="group relative flex h-[30rem] w-full items-center bg-cover bg-center"
-            style={{ backgroundImage: `url("${banner.src}")` }}
+            style={{ backgroundImage: `url("${bannerImage}")` }}
         >
             <div className="pointer-events-none absolute inset-0 bg-transparent transition-colors duration-300 group-hover:bg-primary/50" />
 
@@ -24,7 +27,7 @@ const Banner = () => {
                     className="
                         mt-6 inline-block rounded-sm bg-primary px-6 py-3 text-surface transition-colors duration-300
                         hover:bg-surface hover:text-primary active:ring-3 active:ring-focus/60 active:ring-offset-0
-                        hover:cursor-pointer
+                        hover:cursor-pointer active:duration-0
                     "
                 >
                     {banner.buttonText}

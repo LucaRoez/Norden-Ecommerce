@@ -58,7 +58,11 @@ const Categories = () => {
                                         <h4 className="mt-3 font-semibold text-text text-lg min-md:text-xl min-lg:text-2xl">
                                             {category.name}
                                         </h4>
-                                        <p className="mt-1 text-text-text-secondary text-sm min-md:text-base min-lg:text-lg">
+                                        <p className={`
+                                            mt-1 text-text-text-secondary
+                                            ${category.id === 0 ? "text-xs min-lg:text-sm" :
+                                                "text-sm min-md:text-base min-lg:text-lg"}
+                                        `}>
                                             {category.description}
                                         </p>
                                     </div>

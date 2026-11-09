@@ -43,7 +43,7 @@ export const getFeaturedIds = (): string[] => {
 };
 
 // Productos Destacados iniciales
-const getDefaultFeaturedIds = (): number[] => {
+const getDefaultFeaturedIds = (): string[] => {
   return products
     .filter((product) => product.active && product.featuredEligible)
     .slice(0, FEATURED_LIMIT)

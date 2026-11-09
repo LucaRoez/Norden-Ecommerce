@@ -99,7 +99,7 @@ const FeaturedProducts = () => {
                                         </div>
                                         <div className="w-full flex flex-col items-end mr-2 mb-2">
                                             <Button onClick={(event) => {
-                                                event.stopPropagation();
+                                                event.stopPropagation(); event.preventDefault();
                                                 addItem(product.id, product.variants[0].id);
                                             }} className="
                                                 rounded-sm px-3 py-2 mt-2 text-sm lg:text-base bg-button-primary text-surface hover:bg-button-secondary

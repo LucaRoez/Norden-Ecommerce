@@ -40,9 +40,7 @@ const Products = () => {
         const selected = getCategories().find((c) => c.id === categoryId);
         if (!selected) return;
 
-        setSearchParams(
-            categoryId === 0 ? {} : { categoria: selected.slug }
-        );
+        setSearchParams({categoria: selected.slug});
     };
 
     // manipulador del rango de precio elegido
@@ -84,7 +82,7 @@ const Products = () => {
             default:
                 return result;
         }
-    }, [products, sortOrder]);
+    }, [filteredProducts, sortOrder]);
 
     const sortLabels: Record<SortOrder, string> = {
         "relevance": "Relevancia",
