@@ -1,7 +1,8 @@
 import { getProductByID } from "@/services/productServices";
 
-import type { Cart } from "@/interfaces/cart";
+import type { Cart, CartItem } from "@/interfaces/cart";
 import type { Product } from "@/interfaces/product";
+import { AppError } from "@/errors/AppError";
 
 const CART_STORAGE_KEY = "norden-cart";
 
@@ -18,12 +19,22 @@ const getVariantStock = (
 ): number => {
     const product = getProductByID(productId);
 
+    if (!product) {
+        throw new AppError(
+            "PRODUCT_NOT_FOUND",
+            "El producto no existe o no está disponible."
+        );
+    }
+
     const variant = product?.variants.find(
         variant => variant.id === variantId
     );
 
     if (!variant) {
-        throw new Error("Producto o variante inexistente.");
+        throw new AppError(
+            "VARIANT_NOT_FOUND",
+            "La variante solicitada no existe."
+        );
     }
 
     return variant.stock;
@@ -34,24 +45,85 @@ const validateQuantity = (
     maxStock: number
 ): void => {
     if (!Number.isInteger(quantity) || quantity < 1) {
-        throw new Error("La cantidad debe ser un entero positivo.");
+        throw new AppError(
+            "INVALID_QUANTITY",
+            "La cantidad debe ser un entero positivo."
+        );
     }
 
     if (quantity > maxStock) {
-        throw new Error("Cantidad superior al stock disponible.");
+        throw new AppError(
+            "INSUFFICIENT_STOCK",
+            "La cantidad solicitada supera el stock disponible."
+        );
     }
+};
+const isCartItem = (value: unknown): value is CartItem => {
+    if (typeof value !== "object" || value === null) {
+        return false;
+    }
+
+    const item = value as Record<string, unknown>;
+
+    return (
+        typeof item.productId === "string" &&
+        typeof item.variantId === "string" &&
+        Number.isInteger(item.quantity) &&
+        (item.quantity as number) >= 1
+    );
+};
+const isCart = (value: unknown): value is Cart => {
+    if (typeof value !== "object" || value === null) {
+        return false;
+    }
+
+    const cart = value as Record<string, unknown>;
+
+    return (
+        Array.isArray(cart.items) &&
+        cart.items.every(isCartItem) &&
+        typeof cart.updatedAt === "string" &&
+        !Number.isNaN(Date.parse(cart.updatedAt))
+    );
 };
 
 // Recuperar carrito
 export const getCart = (): Cart => {
-    const storedCart = localStorage.getItem(CART_STORAGE_KEY);
+    let storedCart: string | null;
+
+    try {
+        storedCart = localStorage.getItem(CART_STORAGE_KEY);
+    } catch (error) {
+        throw new AppError(
+            "STORAGE_READ_ERROR",
+            "No se pudo acceder al almacenamiento del carrito.",
+            { cause: error }
+        );
+    }
 
     if (!storedCart) return createEmptyCart();
 
     try {
-        return JSON.parse(storedCart) as Cart;
-    } catch {
-        return createEmptyCart();
+        const parsedData: unknown = JSON.parse(storedCart);
+
+        if (!isCart(parsedData)) {
+            throw new AppError(
+                "STORAGE_DATA_INVALID",
+                "La estructura de los datos almacenados del carrito no es válida."
+            );
+        }
+
+        return parsedData;
+    } catch (error) {
+        if (error instanceof AppError) {
+            throw error;
+        }
+
+        throw new AppError(
+            "STORAGE_DATA_INVALID",
+            "Los datos almacenados del carrito no son válidos.",
+            { cause: error }
+        );
     }
 };
 
@@ -62,7 +134,15 @@ const saveCart = (cart: Cart): void => {
         updatedAt: new Date().toISOString(),
     };
 
-    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(updatedCart));
+    try {
+        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(updatedCart));
+    } catch (error) {
+        throw new AppError(
+            "STORAGE_WRITE_ERROR",
+            "No se pudo guardar el carrito.",
+            { cause: error }
+        );
+    }
 };
 
 // Agregar producto
@@ -131,9 +211,13 @@ export const updateQuantity = (
                 item.variantId === variantId
     );
 
-    if (item) {
-        item.quantity = quantity;
+    if (!item) {
+        throw new AppError(
+            "CART_ITEM_NOT_FOUND",
+            "El producto solicitado no se encuentra en el carrito."
+        );
     }
+    item.quantity = quantity;
 
     saveCart(cart);
     return cart;

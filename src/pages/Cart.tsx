@@ -24,20 +24,22 @@ const Cart = () => {
             <h1 className="text-3xl font-bold mb-8">
                 Mi carrito
             </h1>
-            <div className="grid grid-cols-1 lg:grid-cols-[auto_20rem] gap-8">
-                <section>
+            <div className="grid grid-cols-1 lg:grid-cols-[auto_20rem] sm:gap-8">
+                <section className="flex flex-col justify-evenly">
                     {
-                        cartItems.map((item) => {
+                        cartItems.map((item, i) => {
                             const { cartItem, product, variant } = item;
                             return (
-                                <CartItem
-                                    key={`${cartItem.productId}-${cartItem.variantId}`}
-                                    cartItem={cartItem}
-                                    product={product}
-                                    variant={variant}
-                                    onRemove={removeItem}
-                                    onUpdateQuantity={updateQuantity}
-                                />
+                                <div className={`${i === cartItems.length ? "" : "mb-5"}`}>
+                                    <CartItem
+                                        key={`${cartItem.productId}-${cartItem.variantId}`}
+                                        cartItem={cartItem}
+                                        product={product}
+                                        variant={variant}
+                                        onRemove={removeItem}
+                                        onUpdateQuantity={updateQuantity}
+                                    />
+                                </div>
                             );
                         })
                     }

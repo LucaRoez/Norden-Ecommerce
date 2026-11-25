@@ -1,3 +1,5 @@
+import { Label } from "../ui/label";
+
 interface QuantitySelectorProps {
     quantity: number;
     onQuantityChange: (quantity: number) => void;
@@ -9,16 +11,21 @@ const QuantitySelector = ({
     onQuantityChange,
     maxStock,
 }: QuantitySelectorProps) => {
-    const decrease = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const decrease = () => {
         onQuantityChange(Math.max(1, quantity - 1));
     };
-    const increase = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const increase = () => {
         onQuantityChange(Math.min(maxStock, quantity + 1));
     };
 
     return (
         <div className="space-y-3 flex flex-col sm:flex-row gap-2 sm:gap-3">
-            <label className="font-medium lg:text-lg mb-0">Cantidad</label>
+            <div className="flex flex-col">
+                <label className="font-medium lg:text-lg mb-0">Cantidad</label>
+                {
+                    maxStock <= 0 && (<label className="text-error font-semibold font-sm">sin stock</label>)
+                }
+            </div>
 
             <div className="
                 flex items-center w-fit border border-border rounded-lg
@@ -27,7 +34,7 @@ const QuantitySelector = ({
                 <button
                     type="button"
                     onClick={decrease}
-                    disabled={quantity <= 1}
+                    disabled={quantity <= 1 || maxStock === 0}
                     aria-label="Disminuir cantidad"
                     className="size-10 disabled:opacity-40"
                 >
