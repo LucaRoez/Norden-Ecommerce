@@ -1,13 +1,46 @@
+import { getProductByID } from "@/services/productServices";
 
 import type { Cart } from "@/interfaces/cart";
 import type { Product } from "@/interfaces/product";
 
 const CART_STORAGE_KEY = "norden-cart";
 
+// Funciones privadas
+// start
 const createEmptyCart = (): Cart => ({
     items: [],
     updatedAt: new Date().toISOString(),
 });
+// delegations
+const getVariantStock = (
+    productId: string,
+    variantId: string
+): number => {
+    const product = getProductByID(productId);
+
+    const variant = product?.variants.find(
+        variant => variant.id === variantId
+    );
+
+    if (!variant) {
+        throw new Error("Producto o variante inexistente.");
+    }
+
+    return variant.stock;
+};
+// security
+const validateQuantity = (
+    quantity: number,
+    maxStock: number
+): void => {
+    if (!Number.isInteger(quantity) || quantity < 1) {
+        throw new Error("La cantidad debe ser un entero positivo.");
+    }
+
+    if (quantity > maxStock) {
+        throw new Error("Cantidad superior al stock disponible.");
+    }
+};
 
 // Recuperar carrito
 export const getCart = (): Cart => {
@@ -39,11 +72,18 @@ export const addItem = (
     quantity: number = 1
 ): Cart => {
     const cart = getCart();
+    const maxStock = getVariantStock(productId, variantId);
 
     const existingItem = cart.items.find(
         item => item.productId === productId &&
                 item.variantId === variantId
     );
+
+    const newQuantity = existingItem
+        ? existingItem.quantity + quantity
+        : quantity;
+
+    validateQuantity(newQuantity, maxStock);
 
     if (existingItem) {
         existingItem.quantity += quantity;
@@ -82,10 +122,9 @@ export const updateQuantity = (
     quantity: number
 ): Cart => {
     const cart = getCart();
+    const maxStock = getVariantStock(productId, variantId);
 
-    if (quantity <= 0) {
-        return removeItem(productId, variantId);
-    }
+    validateQuantity(quantity, maxStock);
 
     const item = cart.items.find(
         item => item.productId === productId &&

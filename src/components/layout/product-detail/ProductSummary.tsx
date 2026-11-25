@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import ColorSelector from "@/components/layout/product-detail/ColorSelector";
-import QuantitySelector from "@/components/layout/product-detail/QuantitySelector";
+import QuantitySelector from "@/components/layout/QuantitySelector";
 import { Button } from "@/components/ui/button";
 import type { Product, ProductVariant } from "@/interfaces/product";
 import { formatToCurrency } from "@/utils/formats";
@@ -65,15 +65,14 @@ const ProductSummary = ({ product, selectedVariant, onVariantChange, handleAddTo
             </div>
         </div>
         <div>
-            <Button onClick={(event) => {
-                event.stopPropagation();
-                handleAddToCart(product.id, selectedVariant.id, quantity);
+            <Button onClick={() => {
+                    handleAddToCart(product.id, selectedVariant.id, quantity);
                 }} className="
                     mt-2 w-full px-4 py-2 rounded-sm bg-primary text-surface sm:text-lg lg:text-xl transition-colors duration-400
                     hover:bg-button-secondary hover:text-text active:text-surface active:bg-primary active:duration-0 hover:cursor-pointer
                 "
             >
-                Add to Cart
+                Agregar a Carrito
             </Button>
         </div>
     </div>

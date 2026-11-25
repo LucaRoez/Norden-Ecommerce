@@ -1,24 +1,23 @@
 interface QuantitySelectorProps {
     quantity: number;
     onQuantityChange: (quantity: number) => void;
-    maxStock?: number;
+    maxStock: number;
 }
 
 const QuantitySelector = ({
     quantity,
     onQuantityChange,
-    maxStock = 99,
+    maxStock,
 }: QuantitySelectorProps) => {
-    const decrease = () => {
+    const decrease = (e: React.MouseEvent<HTMLButtonElement>) => {
         onQuantityChange(Math.max(1, quantity - 1));
     };
-
-    const increase = () => {
+    const increase = (e: React.MouseEvent<HTMLButtonElement>) => {
         onQuantityChange(Math.min(maxStock, quantity + 1));
     };
 
     return (
-        <div className="space-y-3 flex flex-col gap-2 sm:gap-3">
+        <div className="space-y-3 flex flex-col sm:flex-row gap-2 sm:gap-3">
             <label className="font-medium lg:text-lg mb-0">Cantidad</label>
 
             <div className="
@@ -35,7 +34,8 @@ const QuantitySelector = ({
                     −
                 </button>
 
-                <span className="w-10 text-center tabular-nums">
+                <span role="status" aria-live="polite" aria-atomic="true" className="w-10 text-center tabular-nums">
+                    <span className="sr-only">Cantidad seleccionada: </span>
                     {quantity}
                 </span>
 

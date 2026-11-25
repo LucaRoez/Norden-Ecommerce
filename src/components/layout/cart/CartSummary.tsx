@@ -12,14 +12,14 @@ const CartSummary = ({ items }: CartSummaryProps) => {
     );
 
     return (
-        <div className="bg-surface/10 p-6">
-            <h2 className="text-xl font-bold mb-4">Resumen del carrito</h2>
-            <p className="text-text-muted">
+        <div className="bg-surface/10 p-6 sticky h-fit top-10 flex flex-col justify-start gap-2">
+            <h2 className="text-xl md:text-2xl font-bold mb-4">Resumen del carrito</h2>
+            <span className="text-text-muted">
                 Total de productos: {totalItems}
-            </p>
-            <p className="text-2xl font-bold">
+            </span>
+            <span className="text-2xl lg:3xl font-bold">
                 {formatToCurrency(totalAmount, 'PYG', 'es-PY')}
-            </p>
+            </span>
         </div>
     );
 };
