@@ -3,9 +3,12 @@ import { useState } from "react";
 import ColorSelector from "@/components/layout/product-detail/ColorSelector";
 import QuantitySelector from "@/components/layout/QuantitySelector";
 import { Button } from "@/components/ui/button";
+
 import type { Product, ProductVariant } from "@/interfaces/product";
 import { formatToCurrency } from "@/utils/formats";
 import { getAsset } from "@/utils/assets";
+import { useCart } from "@/hooks/useCart";
+import { AppError } from "@/errors/AppError";
 
 interface ProductSummaryProps {
     product: Product;
@@ -15,7 +18,9 @@ interface ProductSummaryProps {
 }
 
 const ProductSummary = ({ product, selectedVariant, onVariantChange, handleAddToCart }: ProductSummaryProps) => {
+    const { status } = useCart();
     const [quantity, setQuantity] = useState(1);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     const handleVariantChange = (variantID: string) => {
         const variant = product.variants.find(
@@ -26,6 +31,19 @@ const ProductSummary = ({ product, selectedVariant, onVariantChange, handleAddTo
 
         setQuantity(1);
         onVariantChange(variantID);
+    };
+    
+    const handleAdd = () => {
+        try {
+            setErrorMessage(null);
+            handleAddToCart(product.id, selectedVariant.id, quantity);
+        } catch (error) {
+            setErrorMessage(
+                error instanceof AppError
+                    ? error.message
+                    : "No se pudo agregar el producto al carrito."
+            );
+        }
     };
 
   return (
@@ -65,8 +83,18 @@ const ProductSummary = ({ product, selectedVariant, onVariantChange, handleAddTo
             </div>
         </div>
         <div>
-            <Button onClick={() => {
-                    handleAddToCart(product.id, selectedVariant.id, quantity);
+            {
+                errorMessage && (
+                    <p
+                        role="alert" 
+                        className="col-span-full text-sm sm:text-base text-error flex justify-center"
+                    >
+                        {errorMessage}
+                    </p>
+                )
+            }
+            <Button disabled={status !== "ready"} onClick={() => {
+                    handleAdd();
                 }} className="
                     mt-2 w-full px-4 py-2 rounded-sm bg-primary text-surface sm:text-lg lg:text-xl transition-colors duration-400
                     hover:bg-button-secondary hover:text-text active:text-surface active:bg-primary active:duration-0 hover:cursor-pointer

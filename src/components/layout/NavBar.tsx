@@ -24,7 +24,7 @@ import { useCart } from "@/hooks/useCart";
 const categories = getCategories();
 
 export default function Navbar() {
-    const { count } = useCart();
+    const { count, status } = useCart();
     const [search, setSearch] = useState("");
 
     function handleSearch(event: React.FormEvent<HTMLFormElement>) {
@@ -151,9 +151,13 @@ export default function Navbar() {
                                 className="relative text-secondary hover:bg-surface/20 hover:button-primary-hover"
                             >
                                 <ShoppingCart className="size-5" />
-                                <span className="absolute -right-0.5 -top-0.5 flex size-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-secondary">
-                                    { count }
-                                </span>
+                                    {
+                                        status === "ready" && count > 0 && (
+                                            <span className="absolute -right-0.5 -top-0.5 flex size-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-secondary">
+                                                { count }
+                                            </span>
+                                        )
+                                    }
                             </Button>
                         </Link>
                     </div>

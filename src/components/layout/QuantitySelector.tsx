@@ -19,9 +19,9 @@ const QuantitySelector = ({
     };
 
     return (
-        <div className="space-y-3 flex flex-col sm:flex-row gap-2 sm:gap-3">
-            <div className="flex flex-col">
-                <label className="font-medium lg:text-lg mb-0">Cantidad</label>
+        <div className="space-y-3 flex flex-col sm:flex-row sm:items-center sm:gap-3">
+            <div className="flex flex-col my-2 sm:mx-0 sm:me-2">
+                <label className="font-medium flex self-center justify-center sm:text-base lg:text-lg">Cantidad</label>
                 {
                     maxStock <= 0 && (<label className="text-error font-semibold font-sm">sin stock</label>)
                 }
@@ -36,7 +36,7 @@ const QuantitySelector = ({
                     onClick={decrease}
                     disabled={quantity <= 1 || maxStock === 0}
                     aria-label="Disminuir cantidad"
-                    className="size-10 disabled:opacity-40"
+                    className="size-9 sm:size-10 disabled:opacity-40"
                 >
                     −
                 </button>
@@ -51,7 +51,7 @@ const QuantitySelector = ({
                     onClick={increase}
                     disabled={quantity >= maxStock}
                     aria-label="Aumentar cantidad"
-                    className="size-10 disabled:opacity-40"
+                    className="size-9 sm:size-10 disabled:opacity-40"
                 >
                     +
                 </button>
