@@ -28,12 +28,10 @@ export const getProductByID = (
 export const getProductsByCategory = (
   categoryId: number
 ): Product[] => {
-  if (categoryId === 0) return getProducts();
-  
   return getProducts().filter(
     (product) =>
       product.active &&
-      product.categoryId === categoryId
+      (categoryId === 0 || product.categoryId === categoryId)
   );
 };
 

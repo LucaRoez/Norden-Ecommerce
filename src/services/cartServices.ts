@@ -4,7 +4,7 @@ import type { Cart, CartItem } from "@/interfaces/cart";
 import type { Product } from "@/interfaces/product";
 import { AppError } from "@/errors/AppError";
 
-const CART_STORAGE_KEY = "norden-cart";
+export const CART_STORAGE_KEY = "norden-cart";
 
 // Funciones privadas
 // start
@@ -38,6 +38,23 @@ const getVariantStock = (
     }
 
     return variant.stock;
+};
+// Persistir carrito
+const saveCart = (cart: Cart): void => {
+    const updatedCart: Cart = {
+        ...cart,
+        updatedAt: new Date().toISOString(),
+    };
+
+    try {
+        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(updatedCart));
+    } catch (error) {
+        throw new AppError(
+            "STORAGE_WRITE_ERROR",
+            "No se pudo guardar el carrito.",
+            { cause: error }
+        );
+    }
 };
 // security
 const validateQuantity = (
@@ -122,24 +139,6 @@ export const getCart = (): Cart => {
         throw new AppError(
             "STORAGE_DATA_INVALID",
             "Los datos almacenados del carrito no son válidos.",
-            { cause: error }
-        );
-    }
-};
-
-// Persistir carrito
-const saveCart = (cart: Cart): void => {
-    const updatedCart: Cart = {
-        ...cart,
-        updatedAt: new Date().toISOString(),
-    };
-
-    try {
-        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(updatedCart));
-    } catch (error) {
-        throw new AppError(
-            "STORAGE_WRITE_ERROR",
-            "No se pudo guardar el carrito.",
             { cause: error }
         );
     }
