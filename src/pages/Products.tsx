@@ -1,4 +1,6 @@
 import { useMemo, useState } from "react";
+import { useSearchParams } from "react-router";
+
 import {
   Select,
   SelectContent,
@@ -6,13 +8,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
 import Hero from "@/components/layout/products/Hero";
 import ProductGrid from "@/components/layout/products/ProductGrid";
 import Aside from "@/components/layout/products/Aside";
-import { useSearchParams } from "react-router";
-import { getCategoryBySlug, getCategories } from "@/services/categoryServices";
-import { getProductsByCategory } from "@/services/productServices";
+
+import { getCategoryByID, getCategoryBySlug, getCategories } from "@/services/categoryServices";
+import { getProductsByCategory, getProducts } from "@/services/productServices";
+import { getProductPopularity } from "@/services/searchAnalyticsServices";
 import type { Category } from "@/interfaces/category";
 
 type SortOrder =
@@ -25,11 +27,12 @@ type SortOrder =
 
 const Products = () => {
     const [searchParams, setSearchParams] = useSearchParams();
+    const query = searchParams.get("q")?.trim() ?? "";
     const [sortOrder, setSortOrder] = useState<SortOrder>("relevance");
     
     // buscador inicial de la Categoría
     const slug = searchParams.get("categoria");
-    const defaultCategory = getCategories().find((c) => c.id === 0)!;
+    const defaultCategory = getCategoryByID(0) as Category;
     const category: Category = slug
         ? getCategoryBySlug(slug) ?? defaultCategory
         : defaultCategory;
@@ -44,13 +47,40 @@ const Products = () => {
     };
 
     // manipulador del rango de precio elegido
-    const [priceRange, setPriceRange] = useState<number[]>([0,2000000]);
+    const prices = getProducts()
+        .filter((product) => product.active)
+        .map((product) => product.price);
+    const minPrice = prices.length ? Math.min(...prices) : 0;
+    const maxPrice = prices.length ? Math.max(...prices) : 0;
+    const [priceRange, setPriceRange] = useState<number[]>([minPrice, maxPrice]);
+
+    // resultado final (de búsqueda + filtros aplicados)
     const filteredProducts = useMemo(() => {
+        const normalize = (value: string) =>
+            value
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLowerCase();
+
+        const normalizedQuery = normalize(query);
+
         return products.filter((product) => {
-            return (
+            const matchesPrice =
                 product.price >= priceRange[0] &&
-                product.price <= priceRange[1]
-            );
+                product.price <= priceRange[1];
+
+            const searchableText = normalize([
+                product.name,
+                product.description,
+                product.category,
+                ...(product.features ?? []),
+            ].join(" "));
+
+            const matchesQuery =
+                !normalizedQuery ||
+                searchableText.includes(normalizedQuery);
+
+            return matchesPrice && matchesQuery;
         });
     }, [products, priceRange]);
     
@@ -78,7 +108,15 @@ const Products = () => {
             case "rating-desc":
                 return result.sort((a, b) => b.rate - a.rate);
 
-            case "relevance":   // falta implementación !!!
+            case "relevance": {
+                const popularity = getProductPopularity();
+
+                return result.sort(
+                    (a, b) =>
+                        (popularity[b.id] ?? 0) - (popularity[a.id] ?? 0)
+                );
+            }
+
             default:
                 return result;
         }
@@ -98,10 +136,12 @@ const Products = () => {
             <Hero category={category} />
             <section className="grid grid-cols-1 gap-8 md:grid-cols-[240px_minmax(0,1fr)]">
                 <Aside
+                    categories={getCategories()}
                     selectedCategory={category.id}
                     onCategoryChange={handleCategoryChange}
                     priceRange={priceRange}
                     onPriceChange={setPriceRange}
+                    maxPrice={maxPrice}
                 />
                 <section id="sorted-products" className="mx-auto max-w-7xl px-4 py-8">
                     <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">

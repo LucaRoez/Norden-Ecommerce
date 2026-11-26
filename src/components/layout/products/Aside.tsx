@@ -1,4 +1,3 @@
-
 import {
   Select,
   SelectContent,
@@ -8,32 +7,30 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { Slider } from "@/components/ui/slider";
-import categories from "@/data/categories.json";
+
+import type { Category } from "@/interfaces/category";
 import { formatToCurrency } from "@/utils/formats";
 
 interface ProductsAsideProps {
+    categories: Category[];
     selectedCategory: number;
     onCategoryChange: (categoryId: number) => void;
     priceRange: number[];
     onPriceChange: (range: number[]) => void;
+    maxPrice: number;
 }
 
-const categoryNames = [
-    "Todas las categorías",
-    "Decoración",
-    "Iluminación",
-    "Organización",
-    "Textiles",
-    "Cocina y mesa",
-    "Escritorio",
-];
-
 const ProductsAside = ({
+    categories,
     selectedCategory,
     onCategoryChange,
     priceRange,
     onPriceChange,
+    maxPrice
 }: ProductsAsideProps) => {
+    const selectedCategoryName =
+        categories.find((category) => category.id === selectedCategory)?.name
+        ?? "Todas las categorías";
 
     return (
         <aside className="w-full space-y-6 md:w-64 lg:shrink-0 md:h-full bg-primary p-5 text-secondary-light">
@@ -52,11 +49,11 @@ const ProductsAside = ({
                     <div className="w-full mb-4">
                         <Select
                             value={selectedCategory}
-                            onValueChange={(value) => onCategoryChange(value === null ? 0 : value)}
+                            onValueChange={(value) => onCategoryChange(Number(value))}
                         >
                         <SelectTrigger id="catalog-category" className="w-[220px] [&_svg]:text-secondary-pale text-secondary-pale">
                             <SelectValue>
-                                {categoryNames[selectedCategory]}
+                                {selectedCategoryName}
                             </SelectValue>
                         </SelectTrigger>
                             {
@@ -81,7 +78,7 @@ const ProductsAside = ({
                         <div className="w-full mt-3">
                             <Slider
                                 min={0}
-                                max={2000000}
+                                max={maxPrice}
                                 step={50000}
                                 value={priceRange}
                                 onValueChange={(value) => {

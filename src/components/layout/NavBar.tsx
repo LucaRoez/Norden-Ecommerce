@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Menu,
   Search,
@@ -16,8 +16,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { Link, useNavigate } from "react-router";
 
-import { Link } from "react-router";
 import { getCategories } from "@/services/categoryServices";
 import { useCart } from "@/hooks/useCart";
 
@@ -25,20 +25,72 @@ const categories = getCategories();
 
 export default function Navbar() {
     const { count, status } = useCart();
+    const navigate = useNavigate();
     const [search, setSearch] = useState("");
+    const [isVisible, setIsVisible] = useState(true);
+    const [isAtTop, setIsAtTop] = useState(true);
+    
+    // menú móvil dinámico    
+    useEffect(() => {
+        let previousScrollY = window.scrollY;
+        let accumulatedMovement = 0;
 
-    function handleSearch(event: React.FormEvent<HTMLFormElement>) {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            const movement = currentScrollY - previousScrollY;
+            
+            if (currentScrollY < 0) return;
+
+            const atTop = currentScrollY < 60;
+            setIsAtTop(atTop);
+
+            if (atTop) {
+                setIsVisible(true);
+                accumulatedMovement = 0;
+            } else {
+                // reinicio de conteo al cambiar de dirección
+                if ((movement > 0 && accumulatedMovement < 0) || (movement < 0 && accumulatedMovement > 0)) {
+                    accumulatedMovement = 0;
+                }
+
+                accumulatedMovement += movement;
+
+                // ocultar tras mover abajo
+                if (accumulatedMovement > 60) {
+                    setIsVisible(false);
+                    accumulatedMovement = 0;
+                }
+
+                // volver a mostrar al mover arriba
+                if (accumulatedMovement < -19) {
+                    setIsVisible(true);
+                    accumulatedMovement = 0;
+                }
+            }
+
+            previousScrollY = currentScrollY;
+        };
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    // función del buscador
+    function handleSearch(event: React.SubmitEvent<HTMLFormElement>) {
         event.preventDefault();
 
         const query = search.trim();
         if (!query) return;
 
-        // futura implementación el buscador
-        console.log("Buscar:", query);
+        navigate(`/productos?q=${encodeURIComponent(query)}`);
     }
 
     return (
-        <header className="w-full bg-background text-primary-dark">
+        <header className={`
+            sticky top-0 z-50 w-full bg-background text-primary-dark transition-transform duration-300 ease-in-out
+            ${isAtTop || isVisible ? "translate-y-0" : "-translate-y-full"} sm:static sm:translate-y-0
+        `}>
             <div className="border-b border-border-soft">
                 <div className="mx-auto flex items-center gap-4 pl-4 pr-6 py-4 lg:gap-8 lg:pr-8 lg:pl-6">
                     {/* Menú Mobile */}
