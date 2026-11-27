@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router";
 import Rating from "../Rating";
 
+import { registerProductEvent } from "@/services/searchAnalyticsServices";
 import { getAsset } from "@/utils/assets";
 import { formatToCurrency } from "@/utils/formats";
 import type { Product } from "@/interfaces/product";
@@ -20,11 +21,18 @@ import { AppError } from "@/errors/AppError";
 
 interface ProductCardProps {
     product: Product;
+    query: string;
 }
 
-const ProductCard = ({ product }: ProductCardProps) => {
+const ProductCard = ({ product, query }: ProductCardProps) => {
     const { addItem, status } = useCart();
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    
+    const handleProductClick = () => {
+        if (!query.trim()) return;
+
+        registerProductEvent(product.id, "click", "search", query);
+    };
 
     const handleAdd = () => {
         try {
@@ -57,7 +65,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                 p-0 overflow-hidden bg-background group h-[25rem] min-w-0 min-h-0 w-full
                 grid grid-cols-1 grid-rows-[12rem_minmax(4rem,1fr)_minmax(3rem,1fr)_3rem] gap-2
             ">
-                <Link to={`/productos/${product.id}`} className="contents">
+                <Link to={`/productos/${product.id}`} onClick={handleProductClick} className="contents">
                     <div className="relative w-full h-full min-w-0 min-h-0 overflow-hidden">
                         <img
                             src={imageUrl}

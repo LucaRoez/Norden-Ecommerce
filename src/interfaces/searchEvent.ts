@@ -1,6 +1,7 @@
 export type SearchEvent = {
     productId: string;
     eventType: "impression" | "click";
-    query: string;
+    source: "search" | "featured";
+    query?: string;
     timestamp: number;
 };

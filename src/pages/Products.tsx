@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useRef, useEffect } from "react";
 import { useSearchParams } from "react-router";
 
 import {
@@ -14,8 +14,9 @@ import Aside from "@/components/layout/products/Aside";
 
 import { getCategoryByID, getCategoryBySlug, getCategories } from "@/services/categoryServices";
 import { getProductsByCategory, getProducts } from "@/services/productServices";
-import { getProductPopularity } from "@/services/searchAnalyticsServices";
+import { registerProductEvent, getProductPopularity } from "@/services/searchAnalyticsServices";
 import type { Category } from "@/interfaces/category";
+import type { Product } from "@/interfaces/product";
 
 type SortOrder =
   | "relevance"
@@ -24,6 +25,21 @@ type SortOrder =
   | "name-asc"
   | "name-desc"
   | "rating-desc";
+
+const sortLabels: Record<SortOrder, string> = {
+    "relevance": "Relevancia",
+    "price-asc": "Precio: menor a mayor",
+    "price-desc": "Precio: mayor a menor",
+    "name-asc": "Nombre: A-Z",
+    "name-desc": "Nombre: Z-A",
+    "rating-desc": "Mejor valorados",
+};
+
+const normalize = (value: string) =>
+    value
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
 
 const Products = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -86,50 +102,78 @@ const Products = () => {
     
     // ordenador de Productos
     const sortedProducts = useMemo(() => {
-        const result = [...filteredProducts];
+        const popularity = getProductPopularity();
+        const normalizedQuery = normalize(query);
 
-        switch (sortOrder) {
-            case "price-asc":
-                return result.sort((a, b) => a.price - b.price);
+        // lógica para la 'relevancia'
+        const getTextScore = (product: Product): number => {
+            if (!normalizedQuery) return 0;
 
-            case "price-desc":
-                return result.sort((a, b) => b.price - a.price);
+            const name = normalize(product.name);
+            const category = normalize(product.category);
+            const description = normalize(product.description);
+            const features = normalize(product.features.join(" "));
 
-            case "name-asc":
-                return result.sort((a, b) =>
-                a.name.localeCompare(b.name, "es"),
-                );
+            let score = 0;
 
-            case "name-desc":
-                return result.sort((a, b) =>
-                b.name.localeCompare(a.name, "es"),
-                );
+            if (name === normalizedQuery) score += 100;
+            else if (name.includes(normalizedQuery)) score += 80;
 
-            case "rating-desc":
-                return result.sort((a, b) => b.rate - a.rate);
+            if (category.includes(normalizedQuery)) score += 60;
+            if (features.includes(normalizedQuery)) score += 50;
+            if (description.includes(normalizedQuery)) score += 30;
+            
+            return 0;
+        };
+        const popularityBonus = (productId: string) => {
+            const score = popularity[productId] ?? 0;
+            return Math.min(15, Math.log1p(score) * 3); // "suavizador" de distorsiones para la 'popularidad'
+        };
 
-            case "relevance": {
-                const popularity = getProductPopularity();
+        return [...filteredProducts].sort((a, b) => {
+            switch (sortOrder) {
+                case "relevance":
+                    return (
+                        (getTextScore(b) + popularityBonus(b.id)) -
+                        (getTextScore(a) + popularityBonus(a.id))
+                    );
 
-                return result.sort(
-                    (a, b) =>
-                        (popularity[b.id] ?? 0) - (popularity[a.id] ?? 0)
-                );
+                case "price-asc":
+                    return a.price - b.price;
+
+                case "price-desc":
+                    return b.price - a.price;
+
+                case "name-asc":
+                    return a.name.localeCompare(b.name);
+
+                case "name-desc":
+                    return b.name.localeCompare(a.name);
+
+                case "rating-desc":
+                    return b.rate - a.rate;
+
+                default:
+                    return 0;
             }
-
-            default:
-                return result;
-        }
+        });
     }, [filteredProducts, sortOrder]);
+    
+    // controlador de analíticas
+    const registeredImpressions = useRef(new Set<string>());
 
-    const sortLabels: Record<SortOrder, string> = {
-        "relevance": "Relevancia",
-        "price-asc": "Precio: menor a mayor",
-        "price-desc": "Precio: mayor a menor",
-        "name-asc": "Nombre: A-Z",
-        "name-desc": "Nombre: Z-A",
-        "rating-desc": "Mejor valorados",
-    };
+    useEffect(() => {
+        if (!query) return;
+
+        sortedProducts.forEach((product) => {
+            const eventKey = `${query}:${product.id}`;
+
+            if (registeredImpressions.current.has(eventKey)) return;
+
+            registerProductEvent(product.id, "impression", "search", query);
+            registeredImpressions.current.add(eventKey);
+        });
+    }, [sortedProducts, query]);
 
     return (
         <div className="bg-surface">
@@ -176,7 +220,7 @@ const Products = () => {
                         </div>
                     </div>
 
-                    <ProductGrid products={sortedProducts} />
+                    <ProductGrid products={sortedProducts} query={query} />
                 </section>
             </section>
         </div>

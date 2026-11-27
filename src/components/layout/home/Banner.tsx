@@ -1,4 +1,6 @@
+import { useEffect, useRef } from "react";
 import weeklyBanners from "@/data/promo-banner.json";
+import { registerBannerEvent } from "@/services/bannerAnalyticsServices";
 import { getAsset } from "@/utils/assets";
 
 const Banner = () => {
@@ -6,6 +8,17 @@ const Banner = () => {
     const banner = weeklyBanners[day];
     if (!banner.image) banner.image = "/src/assets/home/promo-banner.jpg";
     const bannerImage = getAsset(banner.image);
+
+    // registro de analíticas exclusivas del banner (lógica de promociones del negocio)
+    const registeredImpression = useRef(false);
+
+    useEffect(() => {
+        if (registeredImpression.current) return;
+
+        registerBannerEvent(banner.id, "impression");
+        registeredImpression.current = true;
+    }, [banner.id]);
+
     return (
         <section
             className="group relative flex h-[30rem] w-full items-center bg-cover bg-center"
@@ -24,6 +37,7 @@ const Banner = () => {
 
                 <a
                     href={banner.buttonLink}
+                    onClick={() => registerBannerEvent(banner.id, "click")}
                     className="
                         mt-6 inline-block rounded-sm bg-primary px-6 py-3 text-surface transition-colors duration-300
                         hover:bg-surface hover:text-primary active:ring-3 active:ring-focus/60 active:ring-offset-0

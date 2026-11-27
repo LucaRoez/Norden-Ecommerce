@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 
 import {
     Carousel,
@@ -14,30 +15,11 @@ import Rating from "../Rating";
 import { getAsset } from "@/utils/assets";
 import { formatToCurrency } from "@/utils/formats";
 import { useCart } from "@/hooks/useCart";
-
-import type { Product } from "@/interfaces/product.ts";
 import { getFeaturedProducts } from "@/services/productServices.ts";
+import { registerProductEvent } from "@/services/searchAnalyticsServices";
+import type { Product } from "@/interfaces/product.ts";
 
 const FeaturedProducts = () => {
-    /*
-    const [featured, setFeatured] = useState<Product[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
-
-    useEffect(() => {
-        getFeaturedProducts()
-        .then(setFeatured)
-        .catch(() => setError(true))
-        .finally(() => setLoading(false));
-    }, []);
-
-    if (loading) {
-        return <p>Cargando productos destacados...</p>;
-    }
-    if (error) {
-        return <p>No se pudieron cargar los productos.</p>;
-    }
-    */
 
     const { addItem } = useCart();
     const featured: Product[] = getFeaturedProducts();
@@ -46,7 +28,16 @@ const FeaturedProducts = () => {
         return null;
     }
 
-    
+    const registeredImpressions = useRef(new Set<string>());
+
+    useEffect(() => {
+        featured.forEach((product) => {
+            if (registeredImpressions.current.has(product.id)) return;
+
+            registerProductEvent(product.id, "impression", "featured");
+            registeredImpressions.current.add(product.id);
+        });
+    }, [featured]);
 
     return (
         <section id="features" className="bg-light py-12">
@@ -66,14 +57,17 @@ const FeaturedProducts = () => {
                     <CarouselContent className="h-full flex justify-between gap-4 ml-[.1rem]">
                     {
                         featured.map((product) => (
-                                <CarouselItem
-                                    key={product.id}
-                                    className="
-                                        basis-[calc(100%-.2rem)] sm:basis-[calc((100%-1.2rem)/2)] lg:basis-[calc((100%-3.1rem)/4)]
-                                        border border-border rounded-sm pl-0 bg-surface-raised
-                                    "
+                            <CarouselItem
+                                key={product.id}
+                                className="
+                                    basis-[calc(100%-.2rem)] sm:basis-[calc((100%-1.2rem)/2)] lg:basis-[calc((100%-3.1rem)/4)]
+                                    border border-border rounded-sm pl-0 bg-surface-raised
+                                "
+                            >
+                                <Link to={`/productos/${product.id}`}
+                                    onClick={() => registerProductEvent(product.id, "click", "featured")}
+                                    className="block w-full h-full cursor-pointer"
                                 >
-                            <Link to={`/productos/${product.id}`} className="block w-full h-full cursor-pointer">
                                     <div className="group block flex flex-col justify-between items-center h-full">
                                         <div className="
                                             w-full overflow-hidden rounded-sm
@@ -110,8 +104,8 @@ const FeaturedProducts = () => {
                                             </Button>
                                         </div>
                                     </div>
-                            </Link>
-                                </CarouselItem>
+                                </Link>
+                            </CarouselItem>
                         ))
                     }
                     </CarouselContent>

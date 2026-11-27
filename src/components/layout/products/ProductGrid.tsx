@@ -3,9 +3,10 @@ import type { Product } from "@/interfaces/product";
 
 interface ProductGridProps {
   products: Product[];
+  query: string;
 };
 
-const ProductGrid = ({ products }: ProductGridProps) => {
+const ProductGrid = ({ products, query }: ProductGridProps) => {
 
     return (
         <section id="product-grid" className="mx-5 my-5">
@@ -18,6 +19,7 @@ const ProductGrid = ({ products }: ProductGridProps) => {
                         <ProductCard
                             key={product.id}
                             product={product}
+                            query={query}
                         />
                     ))
                 }
