@@ -15,8 +15,9 @@ import Aside from "@/components/layout/products/Aside";
 import { getCategoryByID, getCategoryBySlug, getCategories } from "@/services/categoryServices";
 import { getProductsByCategory, getProducts } from "@/services/productServices";
 import { registerProductEvent, getProductPopularity } from "@/services/searchAnalyticsServices";
+import { getTextScore, getPopularityBonus } from "@/services/productRankingServices";
+import { normalize } from "@/utils/normalizations";
 import type { Category } from "@/interfaces/category";
-import type { Product } from "@/interfaces/product";
 
 type SortOrder =
   | "relevance"
@@ -34,12 +35,6 @@ const sortLabels: Record<SortOrder, string> = {
     "name-desc": "Nombre: Z-A",
     "rating-desc": "Mejor valorados",
 };
-
-const normalize = (value: string) =>
-    value
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase();
 
 const Products = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -72,12 +67,6 @@ const Products = () => {
 
     // resultado final (de búsqueda + filtros aplicados)
     const filteredProducts = useMemo(() => {
-        const normalize = (value: string) =>
-            value
-                .normalize("NFD")
-                .replace(/[\u0300-\u036f]/g, "")
-                .toLowerCase();
-
         const normalizedQuery = normalize(query);
 
         return products.filter((product) => {
@@ -98,44 +87,18 @@ const Products = () => {
 
             return matchesPrice && matchesQuery;
         });
-    }, [products, priceRange]);
+    }, [products, priceRange, query]);
     
     // ordenador de Productos
     const sortedProducts = useMemo(() => {
         const popularity = getProductPopularity();
-        const normalizedQuery = normalize(query);
-
-        // lógica para la 'relevancia'
-        const getTextScore = (product: Product): number => {
-            if (!normalizedQuery) return 0;
-
-            const name = normalize(product.name);
-            const category = normalize(product.category);
-            const description = normalize(product.description);
-            const features = normalize(product.features.join(" "));
-
-            let score = 0;
-
-            if (name === normalizedQuery) score += 100;
-            else if (name.includes(normalizedQuery)) score += 80;
-
-            if (category.includes(normalizedQuery)) score += 60;
-            if (features.includes(normalizedQuery)) score += 50;
-            if (description.includes(normalizedQuery)) score += 30;
-            
-            return 0;
-        };
-        const popularityBonus = (productId: string) => {
-            const score = popularity[productId] ?? 0;
-            return Math.min(15, Math.log1p(score) * 3); // "suavizador" de distorsiones para la 'popularidad'
-        };
 
         return [...filteredProducts].sort((a, b) => {
             switch (sortOrder) {
                 case "relevance":
                     return (
-                        (getTextScore(b) + popularityBonus(b.id)) -
-                        (getTextScore(a) + popularityBonus(a.id))
+                        (getTextScore(b, query) + getPopularityBonus(b.id, popularity)) -
+                        (getTextScore(a, query) + getPopularityBonus(a.id, popularity))
                     );
 
                 case "price-asc":
@@ -157,7 +120,7 @@ const Products = () => {
                     return 0;
             }
         });
-    }, [filteredProducts, sortOrder]);
+    }, [filteredProducts, sortOrder, query]);
     
     // controlador de analíticas
     const registeredImpressions = useRef(new Set<string>());
